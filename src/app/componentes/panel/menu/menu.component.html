@@ -1,8 +1,23 @@
 
 <br>
-<button routerLink="/registrar_usuario">
- Registrar Admin
-</button>
+<ng-container *ngIf="datos_usuario.rol === 'propietario'">
+    <button routerLink="/panel/admin/registrar_usuario">
+        Registrar Admin
+       </button>
+       <br>
+       <button routerLink="/panel/admin/historial_pagos">
+        Historial pagos
+       </button>
+       <br>
+       <button routerLink="/panel/admin/suscripciones">
+        Suscripciones
+       </button>
+       <br>
+       <button routerLink="/panel/admin/reportes">
+        reportes
+       </button>
+</ng-container>
+
 <br>
 <button (click)="Cerrar_sesion()">
  cerrar Sesion

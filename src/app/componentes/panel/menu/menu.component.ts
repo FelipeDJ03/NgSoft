@@ -10,13 +10,15 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class MenuComponent {
 
+  public datos_usuario: any = {};
 
   constructor(
     private authservice:AuthService,
     private router:Router
   
   ){
-  
+    const usuario: any = localStorage.getItem('datos_usuario');
+    this.datos_usuario = JSON.parse(usuario);
   }
   Cerrar_sesion(){
     localStorage.removeItem('usuario');

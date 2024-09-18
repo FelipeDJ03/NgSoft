@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent {
+  isMenuOpen = false;
+  activeAccordion: number | null = null;
+  isDropdownOpen = false;
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  toggleAccordion(index: number) {
+    this.activeAccordion = this.activeAccordion === index ? null : index;
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }

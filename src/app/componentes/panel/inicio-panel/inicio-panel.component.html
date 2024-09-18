@@ -1,4 +1,4 @@
-<app-menu></app-menu>
+
 
 <!-- si el rol es propietario osea nosotros los integrantes del equipo mostrar esta tabla -->
 <ng-container  *ngIf="load_data === true">
@@ -6,7 +6,7 @@
 </ng-container>
 <ng-container  *ngIf="load_data === false">
 
-
+    <app-menu></app-menu>
         <ng-container *ngIf="this.datos_usuario.rol === 'administrador'">
             <h1>Hola eres dueño del restaurante</h1>
         </ng-container>

@@ -1,1 +1,492 @@
-<p>inicio works!</p>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>    
+<nav class="bg-white border-gray-200 fixed top-0 left-0 w-full z-50">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 transition-all duration-300">
+    <!-- Logo -->
+    <p class="flex items-center space-x-3 rtl:space-x-reverse">
+      <span class="text-blue-700 text-3xl font-semibold" style="letter-spacing: -0.14em;">&lt;/&gt;</span>
+      <span class="self-center text-2xl font-semibold whitespace-nowrap open-sans-custom">NG Soft</span>
+    </p>
+
+    <!-- Botón para mobile -->
+    <button (click)="toggleMenu()" type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden">
+      <span class="sr-only">Abrir Menu</span>
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+      </svg>
+    </button>
+
+    <!-- Menú -->
+    <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="fixed inset-0 bg-white shadow-lg md:relative md:flex md:flex-row md:space-x-6 md:bg-transparent md:shadow-none md:items-center md:w-auto md:block transition-transform ease-in-out duration-300 transform md:transform-none">
+      <!-- Botón de cerrar en móviles -->
+      <button (click)="toggleMenu()" type="button"
+          class="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 md:hidden">
+        <span class="sr-only">Cerrar Menu</span>
+        <i class="bi bi-x-lg text-2xl"></i>
+      </button>
+
+      <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:items-center md:space-x-6 md:mt-0 md:border-0 md:bg-transparent raleway-fond">
+        <li class="mb-2 md:mb-0">
+          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">Inicio</a>
+        </li>
+        <li class="relative mb-2 md:mb-0">
+          <p (click)="toggleDropdown()" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 hover:cursor-pointer">
+            Módulos <i class="bi bi-chevron-down ml-2"></i>
+          </p>
+        
+          <!-- Dropdown Menu -->
+          <ul *ngIf="isDropdownOpen" class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+            <li>
+              <a href="#m1" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Administrador</a>
+            </li>
+            <li>
+              <a href="#m2" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Meseros</a>
+            </li>
+            <li>
+              <a href="#m3" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Cocina</a>
+            </li>
+          </ul>
+        </li>        
+        <li class="mb-2 md:mb-0">
+          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">Preguntas Frecuentes</a>
+        </li>
+        <li class="mb-2 md:mb-0">
+          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">Contrata</a>
+        </li>
+        <li class="bg-zinc-700 rounded-3xl mt-2 md:mt-0">
+          <a routerLink="/login" class="block py-2 px-6 text-white">Iniciar Sesion</a>
+        </li>
+        <li class="bg-zinc-700 rounded-3xl mt-2 md:mt-0">
+            <a routerLink="/registrar" class="block py-2 px-6 text-white">Registra tu restaurante</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>  
+
+<!-- pedido-inteligente.component.html -->
+<div class="relative flex items-center justify-center h-screen bg-gray-100 pt" id="inicio">
+  <!-- Sección con la división diagonal y fondo completo -->
+  <div class="relative w-full h-full flex items-center">
+    <!-- Texto -->
+    <div class="w-[50%] z-10 p-8 mt-[-4rem] ml-20 pt-32">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4 text-left">
+        NOMBRE DE LA APP: <span class="font-normal">Eficiencia en cada pedido</span>
+      </h1>
+      <p class="text-gray-600 text-lg text-justify">
+        Tu aliado inteligente y seguro para la gestión de pedidos y entregas. Ideal para restaurantes que buscan optimizar sus procesos y brindar una experiencia rápida e intuitiva a sus clientes.
+      </p>
+    </div>
+    
+    <!-- Imagen del repartidor -->
+    <div class="w-[65%] z-10 flex justify-center pl-20">
+      <img src="assets/delivery.webp" alt="Delivery Image" class="w-96 h-auto">
+    </div>
+
+    <!-- Fondo con separación diagonal -->
+    <div class="absolute inset-0 bg-indigo-300 clip-diagonal z-0"></div>
+  </div>
+</div>
+
+<!--------------------------------------------- SECCIÓN DE MÓDULOS ---------------------------------------------->
+<!-- módulos.component.html -->
+<div class="py-12 px-4 bg-gray-100 w-full">
+  <!-- Título -->
+  <h2 class="text-4xl font-semibold text-center mb-4">Módulos</h2>
+  <p class="text-lg text-gray-600 text-center mb-12">
+    Optimiza tu restaurante con estos módulos clave para un servicio eficiente.
+  </p>
+
+  <!-- Sección con los módulos y la imagen -->
+  <div class="flex flex-col md:flex-row justify-between items-center">
+    <!-- Lista de módulos -->
+    <div class="w-full md:w-2/3 mb-8 md:mb-0 md:pr-4 max-w-xl mx-auto">
+      <div class="mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-2">Administrador</h3>
+        <p class="text-gray-600 text-justify">
+          Administra todos los aspectos del restaurante desde un solo lugar. Agrega y organiza mesas, platillos, promociones y empleados. Además, consulta estadísticas detalladas de las ventas diarias, separadas por tipo de pago, para un control financiero más preciso.
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-2">Meseros</h3>
+        <p class="text-gray-600 text-justify">
+          Permite a los meseros tomar órdenes directamente desde la app, eliminando la necesidad de papel. El sistema es rápido y asegura que las comandas lleguen a la cocina de forma inmediata, mejorando la eficiencia en el servicio.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-semibold text-blue-600 mb-2">Cocina</h3>
+        <p class="text-gray-600 text-justify">
+          Recibe y visualiza cada comanda al instante que se envía desde la app. Los cocineros siempre tendrán las órdenes actualizadas en tiempo real para agilizar la preparación y evitar errores.
+        </p>
+      </div>
+    </div>
+
+    <!-- Imagen -->
+    <div class="w-full md:w-1/3 flex justify-start -ml-8">
+      <img src="assets/modulos1.svg" alt="Módulos Image" class="w-80 h-auto md:w-96">
+    </div>
+  </div>
+</div>
+<!--MODULO PARTE 2---------------------------------------------------------------------------------------------->
+
+<div class="bg-gray-100 w-full" id="m1">
+  <!-- Contenedor principal para el contenido debajo del menú -->
+  <div class="container mx-auto flex flex-col md:flex-row items-center px-4 md:px-10">
+    <!-- Sección de Texto -->
+    <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 pt-36">
+      <h2 class="text-2xl font-bold text-blue-900">Administrador</h2>
+      <p class="text-gray-500 mb-4">El módulo de administrador le permitirá:</p>
+      <ul class="list-none space-y-4">
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Gestión de mesas:</strong> Añade, elimina y organiza las mesas de tu restaurante para optimizar el servicio.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Control de platillos y promociones:</strong> Administra el menú, agrega nuevos platillos y configura promociones para atraer más clientes.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Manejo de empleados:</strong> Gestiona el personal del restaurante de manera sencilla.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Estadísticas de ventas:</strong> Consulta las estadísticas diarias de ventas con desglose detallado entre pagos en efectivo y con tarjeta.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sección de Imagen -->
+    <div class="md:w-1/2 flex justify-center mt-10 md:mt-20">
+      <img src="assets/modulo2.svg" alt="Ilustración del módulo administrador" class="w-3/4">
+    </div>
+  </div>
+</div>
+
+<!--MODULO 2--------------------------------------------------------------------------------------------->
+
+<div class="bg-gray-100 w-full py-10" id="m2">
+  <!-- Contenedor principal -->
+  <div class="container mx-auto flex flex-col md:flex-row items-center px-4 md:px-10">
+    
+    <!-- Sección de Imagen -->
+    <div class="md:w-1/2 flex justify-center mb-10 md:mb-0 mt-32">
+      <img src="assets/modulo3.svg" alt="Ilustración de meseros" class="w-1/2">
+    </div>
+
+    <!-- Sección de Texto -->
+    <div class="md:w-1/2 text-center md:text-left mt-[-10]" >
+      <h2 class="text-2xl font-bold text-blue-900">Meseros</h2>
+      <p class="text-gray-500 mb-4">El módulo de meseros le permitirá:</p>
+      <ul class="list-none space-y-4">
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Toma de órdenes rápida:</strong> Los meseros pueden tomar órdenes directamente desde la app, eliminando la necesidad de anotaciones en papel.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Gasto/Compra:</strong> Las pólizas de Gasto o Compra permiten generar pólizas que representen todos los gastos y compras para su empresa.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Acceso a menú digital:</strong> Los meseros pueden acceder al menú digital con actualizaciones en tiempo real, facilitando recomendaciones y promociones.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--modulo 4------------------------------------------------------------------------------------------------->
+
+<div class="bg-gray-100 w-full py-10" id="m3">
+  <!-- Contenedor principal -->
+  <div class="container mx-auto flex flex-col md:flex-row items-center px-4 md:px-10">
+    
+    <!-- Sección de Texto -->
+    <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 mt-36">
+      <h2 class="text-2xl font-bold text-blue-900 ">Cocina</h2>
+      <p class="text-gray-500 mb-4">El módulo de cocina le permitirá:</p>
+      <ul class="list-none space-y-4">
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Visualización de comandas:</strong> Recibe cada comanda al instante en que es enviada por los meseros, asegurando una respuesta rápida.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Actualización en tiempo real:</strong> Las comandas se actualizan de manera automática, optimizando la preparación de los platillos y minimizando errores.</span>
+        </li>
+        <li class="flex items-start ml-4">
+          <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Flujo continuo:</strong> La organización de las comandas facilita el flujo de trabajo dentro de la cocina.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sección de Imagen -->
+    <div class="md:w-1/2 flex justify-center mt-32">
+      <img src="assets/modulo4.svg" alt="Ilustración del módulo cocina" class="w-1/2">
+    </div>
+  </div>
+</div>
+
+<div class="bg-gray-100 py-16 pt-20"> 
+  <div class="container mx-auto text-center mt-12">
+    <h1 class="text-4xl font-semibold text-center mb-4">Precios</h1>
+    <p class="text-gray-600 mb-8">En <strong>NG Soft</strong> contamos con distintos planes ajustados a sus necesidades, todo en un solo lugar sin la necesidad de contemplar gastos extra.</p>
+    
+    <!-- Toggle de precios mensual/anual -->
+    <div class="mb-12">
+      <button class="bg-blue-200 text-blue-800 py-2 px-6 rounded-l-lg">Mensual</button>
+      <button class="bg-gray-200 text-gray-800 py-2 px-6 rounded-r-lg">Anual (Ahorra 2.5%)</button>
+    </div>
+    
+    <!-- Planes de precios -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-4 md:mx-20">
+      
+      <!-- Plan Básico -->
+      <div class="bg-white border rounded-lg shadow-md p-8">
+        <h2 class="text-blue-800 text-xl font-bold mb-4">Básico</h2>
+        <p class="text-3xl font-bold text-gray-800 mb-4">$7</p>
+        <p class="text-sm text-gray-500 mb-4">Usuario/Mes</p>
+        <ul class="text-left mb-6 space-y-2">
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Toma de órdenes en tiempo real</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de mesas</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Reportes de ventas básicos</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Historial de comandas</li>
+          <li class="text-gray-400 line-through flex items-center"><span class="mr-2">✘</span>Promociones y descuentos</li>
+          <li class="text-gray-400 line-through flex items-center"><span class="mr-2">✘</span>Gestión de personal</li>
+        </ul>
+        <button routerLink="/login" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg">Elegir Plan</button>
+      </div>
+
+      <!-- Plan Avanzado -->
+      <div class="bg-blue-900 text-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold mb-4">Avanzado</h2>
+        <p class="text-4xl font-bold mb-4">$9</p>
+        <p class="text-sm text-gray-300 mb-4">Usuario/Mes</p>
+        <ul class="text-left mb-6 space-y-2">
+          <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Toma de órdenes en tiempo real</li>
+          <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Gestión de mesas</li>
+          <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Reportes de ventas básicos</li>
+          <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Historial de comandas</li>
+          <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Promociones y descuentos</li>
+          <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Gestión de personal</li>
+        </ul>
+        <button routerLink="/login" class="bg-white text-blue-900 py-2 px-6 rounded-lg">Elegir Plan</button>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="bg-white border rounded-lg shadow-md p-8">
+        <h2 class="text-blue-800 text-xl font-bold mb-4">Premium</h2>
+        <p class="text-3xl font-bold text-gray-800 mb-4">$12</p>
+        <p class="text-sm text-gray-500 mb-4">Usuario/Mes</p>
+        <ul class="text-left mb-6 space-y-2">
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Toma de órdenes en tiempo real</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de mesas</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Reportes de ventas básicos</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Historial de comandas</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Promociones y descuentos</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de personal</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Integración con pasarelas de pago</li>
+          <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de inventarios</li>
+        </ul>
+        <button  routerLink="/login" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg">Elegir Plan</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--preguntas frecuentes-->
+<div class="bg-gray-100 w-full py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl poppins-thin text-center pb-10">Preguntas Frecuentes</h2>
+
+    <div class="space-y-4">
+      <!-- Pregunta 1 -->
+      <div class="border-b border-gray-200 mt-2 poppins-t">
+        <button class="w-full text-left py-4 flex justify-between items-center" (click)="toggleAccordion(1)">
+          <span>¿Es necesario instalar la aplicación en un dispositivo específico?</span>
+          <i [ngClass]="{'rotate-180': activeAccordion === 1}" class="bi bi-chevron-down transform transition-transform duration-300 text-sm"></i>
+        </button>
+        <div *ngIf="activeAccordion === 1" class="p-4 poppins-e">
+          <p class="text-gray-600">No es necesario, la aplicación está basada en la nube y se puede acceder desde cualquier dispositivo con conexión a internet.</p>
+        </div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="border-b border-gray-200 poppins-t">
+        <button class="w-full text-left py-4 flex justify-between items-center" (click)="toggleAccordion(2)">
+          <span>¿Requiere complementos o herramientas adicionales para operar?</span>
+          <i [ngClass]="{'rotate-180': activeAccordion === 2}" class="bi bi-chevron-down transform transition-transform duration-300 text-sm"></i>
+        </button>
+        <div *ngIf="activeAccordion === 2" class="p-4 poppins-e">
+          <p class="text-gray-600">No, la aplicación es todo-en-uno, no necesitas adquirir complementos adicionales para su funcionamiento básico.</p>
+        </div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="border-b border-gray-200 poppins-t">
+        <button class="w-full text-left py-4 flex justify-between items-center" (click)="toggleAccordion(3)">
+          <span>¿Qué beneficios ofrece esta aplicación frente a otras similares?</span>
+          <i [ngClass]="{'rotate-180': activeAccordion === 3}" class="bi bi-chevron-down transform transition-transform duration-300 text-sm"></i>
+        </button>
+        <div *ngIf="activeAccordion === 3" class="p-4 poppins-e">
+          <p class="text-gray-600">Ofrecemos una interfaz intuitiva, soporte técnico 24/7 y actualizaciones constantes sin costo adicional.</p>
+        </div>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="border-b border-gray-200 poppins-t">
+        <button class="w-full text-left py-4 flex justify-between items-center" (click)="toggleAccordion(4)">
+          <span>¿Puedo gestionar varios restaurantes desde la misma cuenta?</span>
+          <i [ngClass]="{'rotate-180': activeAccordion === 4}" class="bi bi-chevron-down transform transition-transform duration-300 text-sm"></i>
+        </button>
+        <div *ngIf="activeAccordion === 4" class="p-4 poppins-e">
+          <p class="text-gray-600">Sí, puedes gestionar múltiples restaurantes o sucursales desde una misma cuenta, todo centralizado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--formulario de contacto-->
+
+<div class="bg-gray-100 w-full py-16">
+  <div class="container mx-auto px-6 flex items-center justify-between">
+    <!-- Sección del formulario -->
+    <div class="w-1/2">
+      <div class="ml-26"> <!-- Ajusta el valor de ml según sea necesario -->
+        <h2 class="text-2xl font-bold text-blue-900">¿Aún tiene dudas?</h2>
+        <p class="text-left text-lg text-gray-600 mb-10">Agende una demostración, estamos para ayudarle.</p>
+      </div>
+      
+
+      <form class="max-w-4xl mx-auto">
+        <!-- Primera fila: Nombre y Compañía -->
+        <div class="flex flex-wrap -mx-3 mb-4">
+          <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          </div>
+  
+          <div class="w-full md:w-1/2 px-3">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="compania">Compañía</label>
+            <input type="text" id="compania" name="compania" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          </div>
+        </div>
+  
+        <!-- Segunda fila: Correo y Teléfono -->
+        <div class="flex flex-wrap -mx-3 mb-4">
+          <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">Correo *</label>
+            <div class="flex">
+              <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                <i class="bi bi-envelope-fill"></i>
+              </span>
+              <input type="email" id="correo" name="correo" required class="shadow appearance-none border rounded-r-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+          </div>
+  
+          <div class="w-full md:w-1/2 px-3">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">Teléfono</label>
+            <div class="flex">
+              <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                <i class="bi bi-telephone-fill"></i>
+              </span>
+              <input type="tel" id="telefono" name="telefono" class="shadow appearance-none border rounded-r-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Campo de Comentarios centrado -->
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="comentarios">Comentarios</label>
+            <textarea id="comentarios" name="comentarios" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+          </div>
+        </div>
+  
+        <!-- Botón de Enviar centrado -->
+        <div class="flex items-center justify-center">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Enviar
+          </button>
+        </div></form>
+    </div>
+
+    <!-- Sección de la imagen -->
+    <div class="w-1/2 flex justify-center">
+      <img src="assets/formulario.svg" alt="Ilustración de duda" class="w-96 h-auto">
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="bg-stale-50 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+      <!-- Sección izquierda -->
+      <div class="mb-6 md:mb-0">
+        <h2 class="text-lg font-semibold text-gray-800">NG Soft</h2>
+        <p class="text-gray-600">Todo el poder de la gestión de <br> comandos y delivery en la palma de tu mano.</p>
+      </div>
+      
+      <!-- Sección central -->
+      <div class="mb-6 md:mb-0">
+        <h3 class="text-lg font-semibold text-gray-800">Enlaces de interés:</h3>
+        <a href="#" class="text-gray-600 hover:text-blue-600">Política de privacidad</a>
+      </div>
+
+      <!-- Sección derecha -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">A sus órdenes en:</h3>
+        <div class="flex space-x-4 mt-2">
+          <a href="#" class="text-gray-600 hover:text-blue-600">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-blue-600">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-blue-600">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-blue-600">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Copyright -->
+  </div>
+</footer>
+<div class="bg-gray-100 w-full h-40">
+  <div class="text-center text-gray-600 pt-10">
+    <p class="text-sm">&copy; 2024 Copyright <strong>Nombre de la App</strong> POWERED BY <strong>NG Soft S.A. DE C.V.</strong> Todos los derechos reservados</p>
+  </div>
+</div>

@@ -7,7 +7,6 @@ import { MenuComponent } from './componentes/panel/menu/menu.component';
 @NgModule({
   imports: [
     CommonModule,
-   
     HttpClientModule,
     FormsModule,
   ],

@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'registrar',loadChildren: () => import('./componentes/registrar/registrar.module').then(m => m.RegistrarModule) } ,
   { path: 'login',loadChildren: () => import('./componentes/login/login.module').then(m => m.LoginModule) } ,
   { path: 'panel/inicio_panel',loadChildren: () => import('./componentes/panel/inicio-panel/inicio-panel.module').then(m => m.InicioPanelModule) } ,
-  { path: 'registrar_usuario',loadChildren: () => import('./componentes/panel/registrar-admin/registrar-admin.module').then(m => m.RegistrarAdminModule) } ,
 
 ];
 
