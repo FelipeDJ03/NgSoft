@@ -2,67 +2,60 @@ import { Injectable,NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import { GoogleAuthProvider } from "@firebase/auth";
+import { AdminService } from "./admin.service";
 
 @Injectable({
     providedIn:'root'
 })
 
-export class authService{
+export class AuthService{
     Datosusuario:any;
 
     constructor(
         private fas:AngularFireAuth,
+        private adminservice:AdminService,
         private router:Router,
-        private ngzone:NgZone
+        private ngzone:NgZone,
     ){
-        this.fas.authState.subscribe((user)=>{
-            if(user){
-                this.Datosusuario=user;
-                localStorage.setItem('usuario',JSON.stringify(this.Datosusuario));
-            }else{
-                localStorage.setItem('usuario','null');
-            }
-        })
+
     }
 
-
-    login_correo_pass(email:string,password:string){
-        return this.fas.signInWithEmailAndPassword(email,password)
-        .then((userCredential)=>{
-            this.Datosusuario=userCredential.user
-            this.observeUserState()
-        })
-        .catch((error)=>{
-            alert(error.message);
-        })
+    async login_correo_pass(email: string, password: string) {
+      try {
+        const userCredential = await this.fas.signInWithEmailAndPassword(email, password);
+        this.Datosusuario = userCredential.user; // Guarda los datos del usuario
+        
+        // Almacena el usuario en localStorage
+        localStorage.setItem('usuario', JSON.stringify(this.Datosusuario));
+     
+        return userCredential.user; // Retorna el usuario
+      } catch (error) {
+     
+        throw error; // Para que el componente pueda manejar el error
+      }
     }
+    
 
 
-    login_google(){
-        return this.fas.signInWithPopup(new GoogleAuthProvider())
-        .then(()=>this.observeUserState())
-        .catch((error:Error)=>{
-            alert(error.message);
-        })
-    }
+   
 
     registrar_correo_pass(email:string,password:string){
-        return this.fas.createUserWithEmailAndPassword(email, password)
-        .then((userCredential)=>{
-            this.Datosusuario=userCredential.user
-            this.observeUserState()
-        })
-        .catch((error)=>{
-            alert(error.message);
-        })
+        return this.fas.createUserWithEmailAndPassword(email, password);
+       
     }
+    // registrar_correo_pass(email:string,password:string){
+    //     return this.fas.createUserWithEmailAndPassword(email, password)
+    //     .then((userCredential)=>{
+    //         this.Datosusuario=userCredential.user
+    //         this.observeUserState()
+    //     })
+    //     .catch((error)=>{
+    //         alert(error.message);
+    //     })
+    // }
 
 
-    observeUserState(){
-        this.fas.authState.subscribe((userState)=>{
-            userState && this.ngzone.run(()=> this.router.navigate(['inicio_panel']))
-        })
-    }
+
 
 
     get Logeado(): boolean{
@@ -72,10 +65,8 @@ export class authService{
 
 
     Cerrar_Sesion(){
-        return this.fas.signOut().then(()=>{
-            localStorage.removeItem('usuario');
-            this.router.navigate(['login']);
-        })
+        return this.fas.signOut();
     }
 
+   
 }

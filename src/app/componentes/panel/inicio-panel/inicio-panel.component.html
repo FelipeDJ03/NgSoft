@@ -1,3 +1,144 @@
-<button (click)="Cerrar_sesion()">
- cerrar Sesion
-</button>
+<app-menu></app-menu>
+
+<!-- si el rol es propietario osea nosotros los integrantes del equipo mostrar esta tabla -->
+<ng-container  *ngIf="load_data === true">
+    <h1>cargando...</h1>
+</ng-container>
+<ng-container  *ngIf="load_data === false">
+
+
+        <ng-container *ngIf="this.datos_usuario.rol === 'administrador'">
+            <h1>Hola eres dueño del restaurante</h1>
+        </ng-container>
+        <ng-container *ngIf="this.datos_usuario.rol === 'propietario'">
+            <br>
+            <button (click)="mostrar_usuarios()">
+                Lista Usuarios
+            </button>
+            <br>
+            <button (click)="mostrar_restaurantes()">
+                Lista Restaurantes
+            </button>
+            <!-- tabla de usuarios -->
+            <ng-container *ngIf="ventana===true" >
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Nombre
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Apellido
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Correo
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Direccion
+                                </th>
+        
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of usuarios">
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{item.nombre}}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{item.apellido}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.email}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.direccion}}
+                                </td>
+                            
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+            
+            
+            <!-- tabla de restaurantes -->
+            <ng-container *ngIf="ventana===false">
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Nombre
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Contacto
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Telefono
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Estado
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tipo de plan
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fecha  inicio Suscripcion
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fecha final Suscripcion
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    opciones
+                                </th>
+        
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of usuarios">
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{item.nombre_res}}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{item.nombre_propietario}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.telefono}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.estado }} pendiente
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.plan }}  pendiente
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.sus_inicio }}  pendiente
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.sus_final }}  pendiente
+                                </td>
+                                <td>
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opciones
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a>detalles</a>
+                                            <a *ngIf="item.estado=== 'inactivo'">Suscripcion</a>
+                                            <a>Historial suscripciones</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+
+        </ng-container>
+
+</ng-container>
+<!-- si el rol es un dueño de algun restaurante mostrar otra -->

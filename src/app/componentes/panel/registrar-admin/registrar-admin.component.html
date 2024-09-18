@@ -1,0 +1,49 @@
+<div class="bg-gray-50 bg-gradient-to-r from-white-500 to-yellow-500">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white">
+            <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
+            Boletos    
+        </a>
+        <div class="w-full bg-white rounded-lg shadow-lg border-2 border-white dark:border-gray-700 md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
+                    REGISTRAR ADMINISTRADOR
+                </h1>
+                <form class="space-y-4 md:space-y-6" #registrarForm="ngForm" (ngSubmit)="registrar_auth(registrarForm)" action="#">
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Usuario</label>
+                        <input type="text" name="email" [(ngModel)]="usuario.email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Usuario</label>
+                        <input type="text" name="nombre" [(ngModel)]="usuario.nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Usuario</label>
+                        <input type="text" name="apellido" [(ngModel)]="usuario.apellido" id="apellido" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Usuario</label>
+                        <input type="text" name="direccion" [(ngModel)]="usuario.direccion" id="direccion" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Usuario</label>
+                        <input type="number" name="telefono" [(ngModel)]="usuario.telefono" id="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-white-900 dark:text-dark">Tu contraseña</label>
+                        <input type="password" name="password" [(ngModel)]="usuario.password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" required="">
+                    </div>
+                    
+                    <button *ngIf="!cargando" type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                        Registrar
+                    </button>
+                    <button *ngIf="cargando" class="w-full text-black bg-white-600 hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800">
+                        Cargando.....
+                    </button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

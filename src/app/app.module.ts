@@ -14,6 +14,9 @@ import { RegistrarModule } from './componentes/registrar/registrar.module';
 import { LoginModule } from './componentes/login/login.module';
 import { InicioPanelModule } from './componentes/panel/inicio-panel/inicio-panel.module';
 import {AngularFireModule} from '@angular/fire/compat';
+import {FirestoreModule} from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Si usas la compatibilidad
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +31,9 @@ import {AngularFireModule} from '@angular/fire/compat';
     InicioPanelModule,
     provideFirebaseApp(()=>initializeApp(environment.firebase)),
     provideAuth(()=>getAuth()),
+    AngularFirestoreModule,
+    FirestoreModule,
+    AngularFirestoreModule,
 
     //solucionar el error nullinjectError
     AngularFireModule.initializeApp(environment.firebase)
