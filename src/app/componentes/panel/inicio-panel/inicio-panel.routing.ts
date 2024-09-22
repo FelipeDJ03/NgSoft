@@ -11,6 +11,11 @@ const routes: Routes = [
   { path: 'panel/admin/suscripciones',loadChildren: () => import('../p_admins/suscripciones/suscripciones.module').then(m => m.SuscripcionesModule) } ,
   { path: 'panel/admin/reportes',loadChildren: () => import('../p_admins/reportes/reportes.module').then(m => m.ReportesModule) } ,
 
+
+  { path: 'panel/cliente/gestionar_suscripcion',loadChildren: () => import('../p_clientes/gestionar-sus/gestionar-sus.module').then(m => m.GestionarSusModule) } ,
+  { path: 'panel/cliente/historial',loadChildren: () => import('../p_clientes/historial/historial.module').then(m => m.HistorialModule) } ,
+  { path: 'panel/cliente/datos_restaurante',loadChildren: () => import('../p_clientes/perfil-res/perfil-res.module').then(m => m.PerfilResModule) } ,
+  { path: 'panel/cliente/resumen_cuenta',loadChildren: () => import('../p_clientes/resu-cuenta/res-cuenta.module').then(m => m.ResuCuentaModule) } ,
 ];
 
 @NgModule({

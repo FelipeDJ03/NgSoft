@@ -1,33 +1,37 @@
-<div class="bg-gray-50 bg-gradient-to-r from-white-500 to-yellow-500">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white">
-            <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
-            Boletos    
-        </a>
-        <div class="w-full bg-white rounded-lg shadow-lg border-2 border-white dark:border-gray-700 md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
-                    Entra con tu cuenta
-                </h1>
-                <form class="space-y-4 md:space-y-6" #LoginForm="ngForm" (ngSubmit)="login(LoginForm)" action="#">
-                    <div >
-                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Usuario</label>
-                        <input type="text" name="email" [(ngModel)]="usuario.email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
-                    </div>
-                    <div>
-                        <label for="password" class="block mb-2 text-sm font-medium text-white-900 dark:text-dark">Tu contraseña</label>
-                        <input type="password" name="password" [(ngModel)]="usuario.password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" required="">
-                    </div>
-                    
-                    <button *ngIf="!cargando" type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
-                        Iniciar Sesión
-                    </button>
-                    <button *ngIf="cargando" class="w-full text-black bg-white-600 hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800">
-                        Cargando.....
-                    </button>
-                    
-                </form>
-            </div>
+<div class="flex h-screen"> 
+    <!-- Columna izquierda: Formulario de inicio de sesión -->
+    <div class="w-1/2 flex items-center justify-center bg-gray-50">
+        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-center text-black">
+                <span class="text-blue-700 text-3xl font-semibold" style="letter-spacing: -0.14em;">&lt;/&gt;</span>
+                NG Soft</h1>
+            <p class="text-center font-bold text-gray-950">Iniciar Sesión</p>
+            <p class=".inter-a text-center text-gray-500 pb-7">Ingresa tu correo y contraseña a continuación</p>
+            <form class="space-y-4" #LoginForm="ngForm" (ngSubmit)="login(LoginForm)" action="#">
+                <div>
+                    <label class="block text-sm text-gray-600">CORREO ELECTRÓNICO</label>
+                    <input type="email" name="email" [(ngModel)]="usuario.email" id="email" class="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu Correo" required>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600">CONTRASEÑA</label>
+                    <input type="password" name="password" [(ngModel)]="usuario.password" id="password" class="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contraseña" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-sm text-blue-500 hover:underline">¿Olvidaste tu Contraseña?</a>
+                </div>
+                <button *ngIf="!cargando" type="submit" class="w-full py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Iniciar Sesión</button>
+                <button *ngIf="cargando" class="w-full text-black bg-gray-200 rounded-lg">Cargando...</button>
+            </form>
+            <p class="text-sm text-center text-gray-500">
+                ¿Aún no tienes una cuenta? <a href="#" class="text-blue-500 hover:underline">Regístrate</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Columna derecha: Imagen y texto promocional -->
+    <div class="w-1/2 flex items-center justify-center">
+        <div class="flex justify-center items-center w-full h-full">
+            <img src="assets/login.jpg" alt="Image description" class="w-full h-full object-cover">
         </div>
     </div>
 </div>

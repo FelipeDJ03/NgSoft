@@ -80,5 +80,9 @@ export class AdminService {
   getDatarestaurantes() {
     return this.firestore.collection('restaurantes').valueChanges();
   }
+
+  obtener_restaurante(uid:any){
+    return this.firestore.collection('restaurantes').doc(uid).valueChanges();
+  }
  
 }

@@ -17,6 +17,23 @@
         reportes
        </button>
 </ng-container>
+<ng-container *ngIf="datos_usuario.rol === 'administrador'">
+    <button routerLink="/panel/cliente/gestionar_suscripcion">
+        Gestionar Suscripcion
+       </button>
+       <br>
+       <button routerLink="/panel/cliente/historial">
+        Historial 
+       </button>
+       <br>
+       <button routerLink="/panel/cliente/datos_restaurante">
+        Datos del restaurante
+       </button>
+       <br>
+       <button routerLink="/panel/cliente/resumen_cuenta">
+        Resumen de la cuenta
+       </button>
+</ng-container>
 
 <br>
 <button (click)="Cerrar_sesion()">
