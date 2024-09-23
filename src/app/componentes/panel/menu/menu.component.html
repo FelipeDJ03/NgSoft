@@ -1,41 +1,68 @@
-
-<br>
-<ng-container *ngIf="datos_usuario.rol === 'propietario'">
-    <button routerLink="/panel/admin/registrar_usuario">
-        Registrar Admin
-       </button>
-       <br>
-       <button routerLink="/panel/admin/historial_pagos">
-        Historial pagos
-       </button>
-       <br>
-       <button routerLink="/panel/admin/suscripciones">
-        Suscripciones
-       </button>
-       <br>
-       <button routerLink="/panel/admin/reportes">
-        reportes
-       </button>
-</ng-container>
-<ng-container *ngIf="datos_usuario.rol === 'administrador'">
-    <button routerLink="/panel/cliente/gestionar_suscripcion">
-        Gestionar Suscripcion
-       </button>
-       <br>
-       <button routerLink="/panel/cliente/historial">
-        Historial 
-       </button>
-       <br>
-       <button routerLink="/panel/cliente/datos_restaurante">
-        Datos del restaurante
-       </button>
-       <br>
-       <button routerLink="/panel/cliente/resumen_cuenta">
-        Resumen de la cuenta
-       </button>
-</ng-container>
-
-<br>
-<button (click)="Cerrar_sesion()">
- cerrar Sesion
-</button>
+<div class="flex h-screen">
+    <!-- Menú Lateral -->
+    <div class="bg-gray-800 text-white w-64 py-7 px-2 space-y-6">
+      <p class="flex items-center space-x-3 rtl:space-x-reverse mt-3">
+        <span class="text-blue-700 text-4xl font-semibold ml-5" style="letter-spacing: -0.14em;">&lt;/&gt;</span>
+        <span class="self-center text-3xl font-semibold whitespace-nowrap open-sans-custom">NG Soft</span>
+      </p>
+      <nav class="mt-20 space-y-4">
+        <ng-container *ngIf="datos_usuario.rol === 'propietario'">
+          <a
+          routerLink="/panel/inicio_panel"
+          class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+        >
+          <i class="bi bi-box-home-in-right mr-4"></i>Inicio
+        </a>
+          <a
+            routerLink="/panel/admin/registrar_usuario"
+            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+          >
+            <i class="bi bi-box-arrow-in-right mr-4"></i> Registrar Admin
+          </a>
+          <a
+            routerLink="/panel/admin/historial_pagos"
+            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+          >
+            <i class="bi bi-journal-text mr-4"></i> Historial Pagos
+          </a>
+          <a
+            routerLink="/panel/admin/suscripciones"
+            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+          >
+            <i class="bi bi-check2-circle mr-4"></i> Suscripciones
+          </a>
+          <a
+            routerLink="/panel/admin/reportes"
+            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+          >
+            <i class="bi bi-clipboard2-minus mr-4"></i> Reportes
+          </a>
+        </ng-container>
+        <ng-container *ngIf="datos_usuario.rol === 'administrador'">
+            <button routerLink="/panel/cliente/gestionar_suscripcion">
+                Gestionar Suscripcion
+            </button>
+            <br>
+            <button routerLink="/panel/cliente/historial">
+                Historial 
+            </button>
+            <br>
+            <button routerLink="/panel/cliente/datos_restaurante">
+                Datos del restaurante
+            </button>
+            <br>
+            <button routerLink="/panel/cliente/resumen_cuenta">
+                Resumen de la cuenta
+            </button>
+        </ng-container>
+      </nav>
+      <hr class="border-t border-gray-700 my-6">
+      <button
+        (click)="Cerrar_sesion()"
+        class="w-full py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 flex items-center"
+      >
+        <i class="bi bi-box-arrow-left mr-4"></i> Cerrar Sesión
+      </button>
+    </div>
+  </div>
+  

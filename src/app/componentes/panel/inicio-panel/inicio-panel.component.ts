@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class InicioPanelComponent implements OnInit, OnDestroy {
   public usuarios: Array<any> = [];
+  public restaurantes: Array<any> = [];
   public datos_usuario: any = {};
   public load_data = true;
   public uid: any;
@@ -71,12 +72,20 @@ export class InicioPanelComponent implements OnInit, OnDestroy {
       }
     );
   }
-  obtener_restaurantes(){
-    // Almacenar la suscripción de la lista de usuarios
+  obtener_restaurantes() {
     this.usuariosSubscription = this.adminservice.getDatarestaurantes().subscribe(
       res => {
-        this.usuarios = res;
-        //console.log(this.usuarios);
+        // Recorrer los restaurantes y convertir los campos sus_inicio y sus_final a Date
+        this.restaurantes = res.map((restaurante: any) => {
+          if (restaurante.sus_inicio && restaurante.sus_inicio.toDate) {
+            restaurante.sus_inicio = restaurante.sus_inicio.toDate(); // Convertir a Date
+          }
+          if (restaurante.sus_final && restaurante.sus_final.toDate) {
+            restaurante.sus_final = restaurante.sus_final.toDate(); // Convertir a Date
+          }
+          return restaurante;
+        });
+        console.log(this.restaurantes);
       }
     );
   }
