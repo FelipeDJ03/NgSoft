@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const admin = require('firebase-admin');
-var serviceAccount = require("./firebase/project-1062449646823519922-firebase-adminsdk-bk1id-de505e2ea6.json");
+var serviceAccount = require("./firebase/project-1062449646823519922-firebase-adminsdk-bk1id-e7bc1c3c8a.json");
 
 app.use(express.static('public'));
 app.use(cors());
