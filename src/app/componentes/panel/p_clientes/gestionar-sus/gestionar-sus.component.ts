@@ -21,7 +21,7 @@ export class GestionarSusComponent {
       periodo:'mensual'
     },
     {
-      id:1,
+      id:11,
       nombre: 'Básico',
       image: 'https://www.simpledte.cl/wp-content/uploads/2019/11/3-me%CC%81tricas-para-determinar-si-tu-modelo-de-suscripcio%CC%81n-funciona.png',
       precio: 10,
@@ -34,7 +34,7 @@ export class GestionarSusComponent {
       periodo:'mensual'
     },
     {
-      id:2,
+      id:22,
       nombre: 'Avanzado',
       image: 'https://www.simpledte.cl/wp-content/uploads/2019/11/3-me%CC%81tricas-para-determinar-si-tu-modelo-de-suscripcio%CC%81n-funciona.png',
       precio: 20,
@@ -48,7 +48,7 @@ export class GestionarSusComponent {
       periodo:'mensual'
     },
     {
-      id:3,
+      id:33,
       nombre: 'Premium',
       image: 'https://www.simpledte.cl/wp-content/uploads/2019/11/3-me%CC%81tricas-para-determinar-si-tu-modelo-de-suscripcio%CC%81n-funciona.png',
       precio: 30,
@@ -69,7 +69,18 @@ export class GestionarSusComponent {
     this.adminservice.obtener_restaurante(alias).subscribe(
       res=>{
         this.restaurant = res;
-        this.load_data=false;
+
+      // Asegúrate de que `sus_inicio` y `sus_final` están siendo convertidos a Date
+      if (this.restaurant.sus_inicio && this.restaurant.sus_inicio.toDate) {
+        this.restaurant.sus_inicio = this.restaurant.sus_inicio.toDate();
+      }
+      if (this.restaurant.sus_final && this.restaurant.sus_final.toDate) {
+        this.restaurant.sus_final = this.restaurant.sus_final.toDate();
+      }
+
+      this.load_data = false;  // Oculta el indicador de carga
+
+        
       }
     )
   }

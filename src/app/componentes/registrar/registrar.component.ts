@@ -9,6 +9,20 @@ import { AuthService } from 'src/app/servicios/auth.service';
   styleUrls: ['./registrar.component.scss']
 })
 export class RegistrarComponent {
+  steps = ['1', '2', '3', '4',]; 
+  currentStep = 1;
+  nextStep() {
+    if (this.currentStep < this.steps.length) {
+      this.currentStep++;
+    }
+  }
+  
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
+  }
+
   public cargando=false;
   public restaurant : any ={
     categoria:'',
@@ -208,6 +222,6 @@ async registrar_usuario_firestorie(usuario:any){
       this.pdfFile = undefined;
     }
   }
-  
+
   
 }

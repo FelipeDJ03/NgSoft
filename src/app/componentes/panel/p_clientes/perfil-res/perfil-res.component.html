@@ -37,19 +37,129 @@
 
     <!-- Tabla -->
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white w-3/4 mx-auto mt-20">
-        <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Datos res</th>
-                    <th scope="col" class="px-6 py-3">Datos res</th>
-                    <th scope="col" class="px-6 py-3">Datos res</th>
-                    <th scope="col" class="px-6 py-3">Datos res</th>
-                </tr>
-            </thead>
-            <tbody>
-              <!-- filas -->
-            </tbody>
-        </table>
+        <form  #info_resfrom="ngForm" (ngSubmit)="info_res(info_resfrom)" action="#" class="space-y-4 md:space-y-4 bg-white rounded-lg px-36">
+            <h1 class="text-2xl font-bold text-center text-gray-900">
+                Información del Restaurante
+            </h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div>
+                    <label for="nombre_res"
+                        class="block mb-1 text-sm font-semibold text-gray-700">Nombre Restaurante</label>
+                    <input type="text" name="nombre_res"[(ngModel)]="restaurant.nombre_res" id="nombre_res"class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="Nombre del Restaurante" required />
+                </div>
+                <div>
+                    <label for="direccion"  class="block mb-1 text-sm font-semibold text-gray-700">Dirección</label>
+                    <input type="text" name="direccion"[(ngModel)]="restaurant.direccion" id="direccion"class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="Dirección" required />
+                </div>
+                <div>
+                    <label for="ciudad"
+                        class="block mb-1 text-sm font-semibold text-gray-700">Ciudad</label>
+                    <input type="text" name="ciudad" [(ngModel)]="restaurant.ciudad" id="ciudad"class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="Ciudad" required />
+                </div>
+                <div>
+                    <label for="cp" class="block mb-1 text-sm font-semibold text-gray-700">Código Postal</label>
+                    <input type="text" name="cp" [(ngModel)]="restaurant.cp" id="cp" class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="Código Postal" required />
+                </div>
+                <div>
+                    <label for="pais"
+                        class="block mb-1 text-sm font-semibold text-gray-700">País</label>
+                    <input type="text" name="pais" [(ngModel)]="restaurant.pais" id="pais" class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="País" required />
+                </div>
+                <div>
+                    <label for="telefono" class="block mb-1 text-sm font-semibold text-gray-700">Teléfono del Restaurante</label>
+                    <input type="text" name="telefono" [(ngModel)]="restaurant.telefono" id="telefono" class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="Teléfono" required />
+                </div>
+                <div>
+                    <label for="categoria" class="block mb-1 text-sm font-semibold text-gray-700">Tipo de Cocina</label>
+                    <select name="categoria" [(ngModel)]="restaurant.categoria"
+                        class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3">
+                        <option value selected disabled>Seleccionar</option>
+                        <option value="Bar">Bar</option>
+                        <option value="Antojitos Mexicanos">Antojitos Mexicanos</option>
+                        <option value="Pizzeria">Pizzería</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="descripcion" class="block mb-1 text-sm font-semibold text-gray-700">Descripción del Restaurante</label>
+                    <input type="text" name="descripcion"[(ngModel)]="restaurant.descripcion" id="descripcion"class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"placeholder="Descripción" required />
+                </div>
+                <div>
+                    <label for="hora_apertura"  class="block mb-1 text-sm font-semibold text-gray-700">Hora de Apertura</label>
+                    <input type="time" name="hora_apertura" [(ngModel)]="restaurant.hora_apertura" id="hora_apertura" class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3" required />
+                </div>
+                <div>
+                    <label for="hora_cierre"  class="block mb-1 text-sm font-semibold text-gray-700">Hora de Cierre</label>
+                    <input type="time" name="hora_cierre"[(ngModel)]="restaurant.hora_cierre" id="hora_cierre"class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"required />
+                </div>
+                <div>
+                    <label for="d_operacion" class="block mb-1 text-sm font-semibold text-gray-700">Días de Operación</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label><input type="checkbox"
+                                [(ngModel)]="restaurant.d_operacion.lunes"name="d_operacion"
+                                class="mr-2" />Lunes</label>
+                        <label><input type="checkbox"[(ngModel)]="restaurant.d_operacion.martes"name="d_operacion"
+                                class="mr-2" />
+                            Martes</label>
+                        <label><input type="checkbox"
+                                [(ngModel)]="restaurant.d_operacion.miercoles"
+                                name="d_operacion"
+                                class="mr-2" />
+                            Miércoles</label>
+                        <label><input type="checkbox"
+                                [(ngModel)]="restaurant.d_operacion.jueves"
+                                name="d_operacion"
+                                class="mr-2" />
+                            Jueves</label>
+                        <label><input type="checkbox"
+                                [(ngModel)]="restaurant.d_operacion.viernes"
+                                name="d_operacion"
+                                class="mr-2" />
+                            Viernes</label>
+                        <label><input type="checkbox"
+                                [(ngModel)]="restaurant.d_operacion.sabado"
+                                name="d_operacion"
+                                class="mr-2" />
+                            Sábado</label>
+                        <label><input type="checkbox"
+                                [(ngModel)]="restaurant.d_operacion.domingo"
+                                name="d_operacion"
+                                class="mr-2" />
+                            Domingo</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="z_cobertura"
+                        class="block mb-1 text-sm font-semibold text-gray-700">Zona de Cobertura (km)</label>
+                    <input type="number" name="z_cobertura" [(ngModel)]="restaurant.z_cobertura" id="z_cobertura"
+                        class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-3"
+                        placeholder="Ingrese km de cobertura" required />
+                </div>
+                <div class="mb-4">
+                    <label for="logo"
+                        class="block mb-1 text-sm font-semibold text-gray-700 w-full">Logo</label>
+                    <div class="input-group w-full">
+                        <input type="file" id="perfil-input"
+                            (change)="eventoCambioDeImagen($event, 'perfil')"
+                            class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 w-full p-3" />
+                    </div>
+                    <img [src]="imgSeleccionadaPerfil" class="img-thumbnail rounded-lg mt-2" alt="..." style="width: 250px; height: 250px; object-fit: cover;">
+                </div>
+                <div class="mb-4">
+                    <label for="m_d_pago"
+                        class="block mb-1 text-sm font-semibold text-gray-700 w-full">Métodos de Pago</label>
+                    <input type="text" name="m_d_pago" [(ngModel)]="restaurant.m_d_pago"
+                        id="m_d_pago"
+                        class="bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 w-full p-3"
+                        placeholder="Métodos de pago" required />
+                </div>
+            </div>
+            <div class="flex justify-end">
+                <button type="button" 
+                    class="px-5 py-3 text-white bg-blue-700 hover:bg-blue-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-200">
+                    Actualizar
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 

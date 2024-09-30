@@ -37,27 +37,43 @@
 
         <div class="bg-white shadow-md rounded-lg mt-20">
           <h3 class="text-xl font-medium text-gray-800 px-6 py-4 border-b">Mi Cuenta</h3>
-          <table class="min-w-full divide-y divide-gray-200">
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">Nombre de Usuario</td>
-                <td class="px-6 py-4 text-sm text-gray-600"></td>
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">Próxima Fecha de Renovación</td>
-                <td class="px-6 py-4 text-sm text-gray-600"></td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">Tipo de Suscripción</td>
-                <td class="px-6 py-4 text-sm text-gray-600"></td>
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">Último Pago Realizado</td>
-                <td class="px-6 py-4 text-sm text-gray-600"></td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">Estado de Suscripción</td>
-                <td class="px-6 py-4 text-sm text-gray-600"></td>
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">Monto Realizado</td>
-                <td class="px-6 py-4 text-sm text-gray-600"></td>
-              </tr>
-            </tbody>
-        </table>
+          <form class="space-y-4" #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)" action="#">
+            <div class="grid grid-cols-2 gap-4">
+        
+                <div>
+                    <label for="email" class="block text-sm text-gray-600">USUARIO</label>
+                    <input type="text" name="email" [(ngModel)]="usuario.email" id="email" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu usuario" required>
+                </div>
+                <div>
+                    <label for="nombre" class="block text-sm text-gray-600">NOMBRE</label>
+                    <input type="text" name="nombre" [(ngModel)]="usuario.nombre" id="nombre" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu nombre" required>
+                </div>
+
+               
+                <div>
+                    <label for="apellido" class="block text-sm text-gray-600">APELLIDO</label>
+                    <input type="text" name="apellido" [(ngModel)]="usuario.apellido" id="apellido" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu apellido" required>
+                </div>
+                <div>
+                    <label for="direccion" class="block text-sm text-gray-600">DIRECCIÓN</label>
+                    <input type="text" name="direccion" [(ngModel)]="usuario.direccion" id="direccion" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu dirección" required>
+                </div>
+                <div>
+                    <label for="rol" class="block text-sm text-gray-600">ROL</label>
+                    <input type="text" name="rol" [(ngModel)]="usuario.rol" id="rol" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu dirección" readonly required>
+                </div>
+
+             
+                <div>
+                    <label for="telefono" class="block text-sm text-gray-600">TELÉFONO</label>
+                    <input type="number" name="telefono" [(ngModel)]="usuario.telefono" id="telefono" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu teléfono" required>
+                </div>
+                
+            </div>
+
+     
+            <button *ngIf="!load_data" type="submit" class="w-full py-2.5 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Actualizar</button>
+            <button *ngIf="load_data" class="w-full text-black bg-gray-200 rounded-lg">Cargando...</button>
+        </form>
 
 </div>

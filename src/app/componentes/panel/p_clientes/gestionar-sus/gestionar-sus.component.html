@@ -3,55 +3,17 @@
     </style>
 <div class="flex h-screen">
     <app-menu class="w-1/8"></app-menu>
-<div class="flex-1 p-8 bg-gray-100">
+<div class="flex-1 p-6 bg-gray-100">
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl mulish-a text-gray-800">Gestionar Suscripción</h1>
-        <div class="flex justify-end items-center space-x-6">
-            <!-- Icono de Búsqueda -->
-            <div class="relative text-gray-500">
-                <i class="bi bi-search absolute top-1/2 transform -translate-y-1/2 left-3"></i>
-                <input
-                  type="text"
-                  placeholder="Buscar..."
-                  class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-            </div>
-
-            <!-- Icono de Notificaciones -->
-            <button class="relative text-gray-500 hover:text-gray-700">
-                <i class="bi bi-bell"></i>
-                <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-blue-500"></span>
-            </button>
-
-            <!-- Perfil de Usuario -->
-            <div class="flex items-center space-x-2">
-                <span class="text-sm font-medium text-gray-700">Usuario</span>
-                <img
-                  class="w-10 h-10 rounded-full"
-                  src="https://via.placeholder.com/150"
-                  alt="Foto de perfil"
-                />
-            </div>
-        </div>
     </div>
 
 <ng-container  *ngIf="load_data === false">
-    <!-- Cuando el restaurante no su suscripcion activada -->
-    <ng-container *ngIf="restaurant.estado === 'inactivo'">
-        <h1>tu suscripcion esta inactiva</h1>
-        <h1>Selecciona el plan para activar</h1>
-        <div *ngFor="let items of productos">
-            <h1>Tipo de plan:{{items.nombre}}</h1>
-            <h1>Precio:${{items.precio}}</h1>
-            <h1>Periodo:{{items.periodo}}</h1>
-            <button (click)="pagar(items)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Seleccionar</button>
-            
-        </div>
-    </ng-container>
+    
 
     <!-- Cuando el restaurante tiene su suscripcion activada -->
     <ng-container *ngIf="restaurant.estado === 'activo'" > 
-        <div class="bg-white rounded-lg shadow p-8">
+        <div class="bg-white rounded-lg shadow ">
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Suscripción</h2>
             <table class="min-w-full border border-gray-200 rounded-lg">
             <thead>
@@ -64,11 +26,11 @@
             </thead>
             <tbody class="bg-white">
                 <tr class="border-t border-gray-200 text-gray-700">
-                <td class="py-4 px-6">Premium</td>
-                <td class="py-4 px-6">Activa</td>
-                <td class="py-4 px-6">May 26, 2019</td>
+                <td class="py-4 px-6">{{this.restaurant.plan}}</td>
+                <td class="py-4 px-6">{{this.restaurant.sus_inicio   | date: 'longDate'  }}</td>
+                <td class="py-4 px-6">{{this.restaurant.sus_final   | date: 'longDate'  }}</td>
                 <td class="py-4 px-6 flex items-center">
-                    <span class="bg-green-500 text-white rounded-full px-4 py-1 text-sm">RENOVAR</span>
+                    <span class="bg-green-500 text-white rounded-full px-4 py-1 text-sm">ACTIVADO</span>
                     <button class="ml-4 text-gray-500 hover:text-gray-700">
                     <i class="bi bi-three-dots-vertical"></i>
                     </button>
@@ -77,8 +39,8 @@
             </tbody>
             </table>
             <div class="flex justify-end space-x-4 mt-6">
-            <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Cambiar Plan</button>
-            <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cancelar Suscripción</button>
+            <!-- <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Cambiar Plan</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cancelar Suscripción</button> -->
             </div>
         </div>  
 
@@ -88,10 +50,9 @@
     <ng-container *ngIf="restaurant.estado === 'inactivo'">
          <!----------------------------------------------------PLANES--------------------------------------------------->
 
-         <div class="bg-gray-100 py-16 pt-20"> 
             <div class="container mx-auto text-center mt-12">        
             <!-- Toggle de precios mensual/anual -->
-            <div class="mb-12">
+            <div class="mb-4">
                 <button class="bg-blue-200 text-blue-800 py-2 px-6 rounded-l-lg">Mensual</button>
                 <button class="bg-gray-200 text-gray-800 py-2 px-6 rounded-r-lg">Anual (Ahorra 2.5%)</button>
             </div>
@@ -112,7 +73,9 @@
                     <li class="text-gray-400 line-through flex items-center"><span class="mr-2">✘</span>Promociones y descuentos</li>
                     <li class="text-gray-400 line-through flex items-center"><span class="mr-2">✘</span>Gestión de personal</li>
                 </ul>
-                <button routerLink="/login" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg">Elegir Plan</button>
+                <button (click)="pagar(productos[0])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Mensual</button>
+                <br>
+                <button (click)="pagar(productos[1])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Anual</button>
                 </div>
         
                 <!-- Plan Avanzado -->
@@ -128,7 +91,8 @@
                     <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Promociones y descuentos</li>
                     <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Gestión de personal</li>
                 </ul>
-                <button routerLink="/login" class="bg-white text-blue-900 py-2 px-6 rounded-lg">Elegir Plan</button>
+                <button (click)="pagar(productos[2])" class="bg-white text-blue-900 py-2 px-6 rounded-lg mt-4" >Elegir Plan Mensual</button>
+                <button (click)="pagar(productos[3])" class="bg-white text-blue-900 py-2 px-6 rounded-lg mt-4" >Elegir Plan Anual</button>
                 </div>
         
                 <!-- Plan Premium -->
@@ -146,10 +110,10 @@
                     <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Integración con pasarelas de pago</li>
                     <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de inventarios</li>
                 </ul>
-                <button  routerLink="/login" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg">Elegir Plan</button>
+                <button  (click)="pagar(productos[4])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Mensual</button>
+                <button  (click)="pagar(productos[5])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Anual</button>
                 </div>
             </div>
-        </div>
         </div>
     </ng-container>
 </ng-container>

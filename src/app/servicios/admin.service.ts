@@ -84,5 +84,11 @@ export class AdminService {
   obtener_restaurante(uid:any){
     return this.firestore.collection('restaurantes').doc(uid).valueChanges();
   }
+
+  obtener_pagos_suscripcion(uid: any) {
+    return this.firestore.collection('pagos_suscripcion', ref => 
+      ref.where('restaurante', '==', uid) // Filtrar por el campo alias igual a uid
+    ).valueChanges();
+  }
  
 }

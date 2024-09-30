@@ -42,32 +42,32 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">Fecha de pago</th>
                     <th scope="col" class="px-6 py-3">Tipo de Suscripción</th>
-                    <th scope="col" class="px-6 py-3">Método de Pago</th>
-                    <th scope="col" class="px-6 py-3">Estado</th>
+                    <th scope="col" class="px-6 py-3">Cantidad Pagada</th>
+                    <th scope="col" class="px-6 py-3">Producto</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let item of pagos">
               <!-- filas -->
               <tr class="bg-white border-b hover:bg-gray-50">
                 <!-- Columna de Fecha de Pago -->
                 <td class="py-4 px-6 text-sm font-medium text-gray-900">
-                  00/00/0000
+                  {{item.fecha | date: 'longDate' }}
                 </td>
                 
                 <!-- Columna de Tipo de Suscripción -->
                 <td class="py-4 px-6 text-sm font-medium text-gray-900">
-                  Basica
+                  {{item.periodo}}
                 </td>
                 
                 <!-- Columna de Método de Pago -->
                 <td class="py-4 px-6 text-sm font-medium text-gray-900">
-                  PayPal
+                  ${{item.cantidadPagada}}
                 </td>
                 
                 <!-- Columna de Estado -->
                 <td class="py-4 px-6 text-sm font-medium">
                   <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-500 rounded-full">
-                    APROVADO
+                    {{item.nombreProducto}}
                   </span>
                 </td>
                 
