@@ -11,41 +11,42 @@
 <ng-container  *ngIf="load_data === false">
     
 
-    <!-- Cuando el restaurante tiene su suscripcion activada -->
-    <ng-container *ngIf="restaurant.estado === 'activo'" > 
-        <div class="bg-white rounded-lg shadow ">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Suscripción</h2>
-            <table class="min-w-full border border-gray-200 rounded-lg">
-            <thead>
-                <tr class="text-left">
-                <th class="py-3 px-6 text-gray-500 font-medium">Suscripción Actual</th>
-                <th class="py-3 px-6 text-gray-500 font-medium">Inicio de Suscripción</th>
-                <th class="py-3 px-6 text-gray-500 font-medium">Próxima Renovación</th>
-                <th class="py-3 px-6 text-gray-500 font-medium">Prioridad</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white">
-                <tr class="border-t border-gray-200 text-gray-700">
-                <td class="py-4 px-6">{{this.restaurant.plan}}</td>
-                <td class="py-4 px-6">{{this.restaurant.sus_inicio   | date: 'longDate'  }}</td>
-                <td class="py-4 px-6">{{this.restaurant.sus_final   | date: 'longDate'  }}</td>
-                <td class="py-4 px-6 flex items-center">
-                    <span class="bg-green-500 text-white rounded-full px-4 py-1 text-sm">ACTIVADO</span>
-                    <button class="ml-4 text-gray-500 hover:text-gray-700">
-                    <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                </td>
-                </tr>
-            </tbody>
+    
+    <!-- Cuando el restaurante tiene su suscripción activada -->
+<ng-container *ngIf="restaurant.estado === 'activo'">
+    <div class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Suscripción</h2>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-800">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3">Suscripción Actual</th>
+                        <th class="px-6 py-3">Inicio de Suscripción</th>
+                        <th class="px-6 py-3">Próxima Renovación</th>
+                        <th class="px-6 py-3">Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900">{{ restaurant.plan }}</td>
+                        <td class="px-6 py-4">{{ restaurant.sus_inicio | date: 'longDate' }}</td>
+                        <td class="px-6 py-4">{{ restaurant.sus_final | date: 'longDate' }}</td>
+                        <td class="px-6 py-4 flex items-center">
+                            <span class="bg-green-500 text-white rounded-full px-4 py-1 text-sm">ACTIVADO</span>
+                            <button class="ml-4 text-gray-500 hover:text-gray-700">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="flex justify-end space-x-4 mt-6">
+        </div>
+        <div class="flex justify-end space-x-4 mt-6">
+            <!-- Opciones adicionales (descomentarlas si se necesitan) -->
             <!-- <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Cambiar Plan</button>
             <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cancelar Suscripción</button> -->
-            </div>
-        </div>  
-
-       
-    
+        </div>
+    </div>    
     </ng-container>
     <ng-container *ngIf="restaurant.estado === 'inactivo'">
          <!----------------------------------------------------PLANES--------------------------------------------------->
@@ -119,8 +120,7 @@
 </ng-container>
 
     <!-- Cargando...... -->
-<ng-container *ngIf="load_data === true">
-    <h1>cargando...</h1>
-</ng-container>
-
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>
 

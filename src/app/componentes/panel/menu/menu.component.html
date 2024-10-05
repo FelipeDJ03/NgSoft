@@ -1,6 +1,6 @@
-<div class="flex h-screen">
-  <!-- Menú Lateral -->
-  <div class="bg-gray-800 text-white w-64 py-7 px-2 space-y-6">
+<div class="flex">
+  <!-- Menú Lateral Fijo -->
+  <div class="fixed bg-gray-800 text-white w-64 h-screen py-7 px-2 space-y-6">
     <p class="flex items-center space-x-3 rtl:space-x-reverse mt-3">
       <span class="text-blue-700 text-4xl font-semibold ml-5" style="letter-spacing: -0.14em;">&lt;/&gt;</span>
       <span class="self-center text-3xl font-semibold whitespace-nowrap open-sans-custom">NG Soft</span>
@@ -39,7 +39,7 @@
         </a>
       </ng-container>
       <ng-container *ngIf="datos_usuario.rol === 'administrador'">
-          <button class="ml-4"  routerLink="/panel/cliente/gestionar_suscripcion">
+          <button class="ml-4 mt-4"  routerLink="/panel/cliente/gestionar_suscripcion">
             <i class="bi bi-card-checklist mr-4"></i>  Gestionar Suscripcion
           </button>
           <br>
@@ -64,5 +64,9 @@
       <i class="bi bi-box-arrow-left mr-4"></i> Cerrar Sesión
     </button>
   </div>
-</div>
 
+  <!-- Contenido principal ajustado -->
+  <div class="ml-64 flex-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>
