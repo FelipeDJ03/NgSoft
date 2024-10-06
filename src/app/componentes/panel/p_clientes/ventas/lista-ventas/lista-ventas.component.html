@@ -1,0 +1,159 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+</style>
+
+<div class="flex h-screen">
+    <app-menu class="w-1/8"></app-menu>
+    <div class="flex-1 p-8 bg-gray-100">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-gray-800" style="font-family: 'Mulish', sans-serif;">Historial de Ventas</h1>
+        </div>
+        <div class="card">
+            <div class="row esp">
+                <div class="col-md-1 form-group">
+                    <p class="titulo1f">Fecha</p>
+                </div>
+                <div class="col-md-5 form-group fechac">
+                    <div class="input-group">
+                         <input type="date" [value]="getDefaultDate()" [(ngModel)]="fechaSeleccionada" id="fechaInicio" name="fechaInicio" class="form-control"> 
+                    </div>
+                </div> 
+                <div class="col-md-4 form-group btnf">   
+                </div> 
+                <div class="col-md-2 form-group btnf">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="buscarVentas()">Buscar</button>&nbsp;            
+                </div>                  
+            </div>
+            <div class="row"> 
+                <div class="col-md-12">
+                  <div class="container marg ">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="input-group" role="search">
+                          <input class="form-control"  name="filtro_empleados" [(ngModel)]="filtro_ventas" type="search" placeholder="Buscar venta por folio...." aria-label="Search">
+                          <span class="input-group-text colorc1" (click)="filtro()" id="basic-addon1">
+                            <svg class="boton svg1"  type="submit" xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><style>.svg1{fill:#ffffff}</style><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div *ngIf="load_data === false" class="card noborde">
+            <div class="row" *ngIf="mostrar">
+                <div class="col-md-3 form-group">
+                    <p class="titulo2">Ventas Totales</p>
+                </div>
+                <div class="col-md-3 form-group">
+                    <p class="titulo1">{{ totalVentas }}</p><hr class="hr1">
+                </div>
+                <div class="col-md-3 form-group">
+                    <p class="titulo2">Total Vendido</p>
+                </div>  
+                <div class="col-md-3 form-group">
+                    <p class="titulo1">$ {{ totalVendido }} MXN</p><hr class="hr1">
+                </div>                   
+            </div>
+            </div>
+       
+        <!-- Tabla -->
+        <div *ngIf="load_data === false" class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white w-3/4 mx-auto mt-20">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Fecha de Venta</th>
+                        <th scope="col" class="px-6 py-3">Folio</th>
+                        <th scope="col" class="px-6 py-3">Metodo de PAgo</th>
+                        <th scope="col" class="px-6 py-3">Importe</th>
+                        <th scope="col" class="px-6 py-3">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let venta of ventas ; let i = index">
+                    <!-- filas -->
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <!-- Columna de Fecha de Venta -->
+                        <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                            {{venta.fecha | date: 'longDate' }}
+                        </td>
+
+                        <!-- Columna de Tipo de Suscripción -->
+                        <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                            {{venta.folio}}
+                        </td>
+
+                        <!-- Columna de Cantidad Vendida -->
+                        <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                            {{venta.metodoPago}}
+                        </td>
+
+                        <!-- Columna de Producto -->
+                        <td class="py-4 px-6 text-sm font-medium">
+                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-500 rounded-full">
+                               {{venta.total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}}
+                            </span>
+                        </td>
+
+                        <!-- Columna de Opciones -->
+                        <td class="py-4 px-6 text-right">
+                            <button class="ml-4 text-gray-500 hover:text-gray-700">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a type="button" class="dropdown-item" (click)="generatePDF(i)">Imprimir ticket</a>
+                                <!-- Contenido para PDF -->
+                                <div id="ListaVentas_PDF_{{i}}" style="display: none;">
+                                        <p class="t-titulo1"><b>HIDREAL</b></p>
+                                        <p class="t-titulo" style="font-style: oblique;">Agua Purificada</p>
+                                        <p class="t-titulo">Comercio y Distribución UTVM S.A. de C.V.</p>
+                                        <p class="t-titulo">Carr. Pachuca - Laredo Km. 77, Panales Ixmiquilpan, Hgo. C.P. 42300</p>
+
+                                        <p class="t-text1" style="margin-top: 3%;">FOLIO:&nbsp; {{ venta.folio}}</p>                                           
+                                        <p class="t-text1">CLIENTE:&nbsp; {{ venta.cliente}}</p>
+                                        <p class="t-text1">HORA:&nbsp;{{ venta.hora}}</p>
+                
+                                            <div class="row" *ngFor="let producto of venta.productos" style="margin-top: 3%;">
+                                                <hr style="margin-bottom: 3%;">
+                                                <div class="col-md-4 form-group">
+                                                    <p class="t-text2">PRODUCTO</p>
+                                                    <p class="t-text2">{{ producto.nombre }}</p>
+                                                </div> 
+                                                <div class="col-md-2 form-group">
+                                                    <p class="t-text2">CANT</p>
+                                                    <p class="t-text2">{{producto.precio_publico.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</p>
+                                                </div>
+                                                                                          
+                                                <div class="col-md-3 form-group">
+                                                    <p class="t-text2">%&nbsp;&nbsp;DTO</p>
+                                                    <p class="t-text2">{{producto.descuentoPorcentaje}}%&nbsp;{{producto.descuentoCantidad.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</p>
+                                                </div>
+                                                <div class="col-md-3 form-group">
+                                                    <p class="t-text2">SUBT</p>
+                                                    <p class="t-text2">{{producto.subtotal_producto.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</p>
+                                                </div>
+                                                <hr style="margin-top: 3%; margin-bottom: 1%;">
+                                            </div>
+                                        <p class="t-text2">MÉTODO DE PAGO</p>
+                                        <p class="t-text2" *ngFor="let fpago of venta.formasDePago" class="t-text2">{{ fpago.formaPago }}: {{fpago.cantidadPagar.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }} MXN </p>
+                                        <p class="t-text2">IMPORTE:&nbsp; {{ venta.total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}} MXN</p> 
+                                        <hr style="margin-top: 9%;">
+                                        <p class="t-titulo">Gracias por su compra</p>
+                                </div> 
+                                <!-- Contenido para PDF -->
+                                <a type="button" class="dropdown-item">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+    </div>
+</div>
+<!-- Cargando...... -->
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>

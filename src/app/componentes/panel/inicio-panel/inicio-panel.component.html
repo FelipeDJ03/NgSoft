@@ -1,6 +1,7 @@
-<ng-container *ngIf="load_data === true">
-  <h1 class="text-xl font-semibold">Cargando...</h1>
-</ng-container>
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+  <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>
+
 <ng-container *ngIf="load_data === false">
   <div class="flex h-screen">
     <app-menu></app-menu>

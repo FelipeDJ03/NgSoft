@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'panel/cliente/historial',loadChildren: () => import('../p_clientes/historial/historial.module').then(m => m.HistorialModule) } ,
   { path: 'panel/cliente/datos_restaurante',loadChildren: () => import('../p_clientes/perfil-res/perfil-res.module').then(m => m.PerfilResModule) } ,
   { path: 'panel/cliente/resumen_cuenta',loadChildren: () => import('../p_clientes/resu-cuenta/res-cuenta.module').then(m => m.ResuCuentaModule) } ,
+  { path: 'panel/cliente/ventas/lista_ventas',loadChildren: () => import('../p_clientes/ventas/lista-ventas/lista-ventas.module').then(m => m.ListaVentasModule) } ,
 ];
 
 @NgModule({

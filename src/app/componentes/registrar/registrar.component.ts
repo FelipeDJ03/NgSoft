@@ -53,13 +53,15 @@ export class RegistrarComponent {
 
 
 ////metodos para los formularios
-  info_res(info_resfrom:{valid:any;}){
+  info_res(info_resfrom:any){
     if(info_resfrom.valid){
       if(this.imgFileLogo == undefined){
       console.log('no hay logo del restaruante')
       }else{
         console.log(this.restaurant)
       }
+    }else{
+      console.log('no hay datos')
     }
   }
   info_prop(info_propform:{valid:any;}){
@@ -67,6 +69,8 @@ export class RegistrarComponent {
    
         console.log(this.restaurant)
       
+    }else{
+      console.log('no hay datos')
     }
   }
   doc(docform:{valid:any;}){
@@ -76,9 +80,10 @@ export class RegistrarComponent {
           }else{
             console.log(this.restaurant)
           }
+        }else{
+          console.log('no hay datos')
         }
   }
-
 //metodos para insertar en bd
   async info_banco(info_bancoform:{valid:any;}){
     if(info_bancoform.valid){
@@ -110,6 +115,8 @@ export class RegistrarComponent {
             // Si ocurre algún error, lo muestra en consola
             console.error('Error durante el registro: ', error);
           }
+  }else{
+    console.log('no hay datos');
   }
   }
 
