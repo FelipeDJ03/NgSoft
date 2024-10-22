@@ -1,0 +1,126 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
+<div class="flex h-screen">
+    <app-menu class="w-1/8"></app-menu>
+<div class="flex-1 p-6 bg-gray-100">
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl mulish-a text-gray-800">Gestionar Suscripción</h1>
+    </div>
+
+<ng-container  *ngIf="load_data === false">
+    
+
+    
+    <!-- Cuando el restaurante tiene su suscripción activada -->
+<ng-container *ngIf="restaurant.estado === 'activo'">
+    <div class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Suscripción</h2>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-800">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3">Suscripción Actual</th>
+                        <th class="px-6 py-3">Inicio de Suscripción</th>
+                        <th class="px-6 py-3">Próxima Renovación</th>
+                        <th class="px-6 py-3">Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900">{{ restaurant.plan }}</td>
+                        <td class="px-6 py-4">{{ restaurant.sus_inicio | date: 'longDate' }}</td>
+                        <td class="px-6 py-4">{{ restaurant.sus_final | date: 'longDate' }}</td>
+                        <td class="px-6 py-4 flex items-center">
+                            <span class="bg-green-500 text-white rounded-full px-4 py-1 text-sm">ACTIVADO</span>
+                            <button class="ml-4 text-gray-500 hover:text-gray-700">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex justify-end space-x-4 mt-6">
+            <!-- Opciones adicionales (descomentarlas si se necesitan) -->
+            <!-- <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Cambiar Plan</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cancelar Suscripción</button> -->
+        </div>
+    </div>    
+    </ng-container>
+    <ng-container *ngIf="restaurant.estado === 'inactivo'">
+         <!----------------------------------------------------PLANES--------------------------------------------------->
+
+            <div class="container mx-auto text-center mt-12">        
+            <!-- Toggle de precios mensual/anual -->
+            <div class="mb-4">
+                <button class="bg-blue-200 text-blue-800 py-2 px-6 rounded-l-lg">Mensual</button>
+                <button class="bg-gray-200 text-gray-800 py-2 px-6 rounded-r-lg">Anual (Ahorra 2.5%)</button>
+            </div>
+            
+            <!-- Planes de precios -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-4 md:mx-20">
+                
+                <!-- Plan Básico -->
+                <div class="bg-white border rounded-lg shadow-md p-8">
+                <h2 class="text-blue-800 text-xl font-bold mb-4">Básico</h2>
+                <p class="text-3xl font-bold text-gray-800 mb-4">$7</p>
+                <p class="text-sm text-gray-500 mb-4">Usuario/Mes</p>
+                <ul class="text-left mb-6 space-y-2">
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Toma de órdenes en tiempo real</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de mesas</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Reportes de ventas básicos</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Historial de comandas</li>
+                    <li class="text-gray-400 line-through flex items-center"><span class="mr-2">✘</span>Promociones y descuentos</li>
+                    <li class="text-gray-400 line-through flex items-center"><span class="mr-2">✘</span>Gestión de personal</li>
+                </ul>
+                <button (click)="pagar(productos[0])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Mensual</button>
+                <br>
+                <button (click)="pagar(productos[1])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Anual</button>
+                </div>
+        
+                <!-- Plan Avanzado -->
+                <div class="bg-blue-900 text-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold mb-4">Avanzado</h2>
+                <p class="text-4xl font-bold mb-4">$9</p>
+                <p class="text-sm text-gray-300 mb-4">Usuario/Mes</p>
+                <ul class="text-left mb-6 space-y-2">
+                    <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Toma de órdenes en tiempo real</li>
+                    <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Gestión de mesas</li>
+                    <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Reportes de ventas básicos</li>
+                    <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Historial de comandas</li>
+                    <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Promociones y descuentos</li>
+                    <li class="flex items-center"><span class="text-green-300 mr-2">✔</span>Gestión de personal</li>
+                </ul>
+                <button (click)="pagar(productos[2])" class="bg-white text-blue-900 py-2 px-6 rounded-lg mt-4" >Elegir Plan Mensual</button>
+                <button (click)="pagar(productos[3])" class="bg-white text-blue-900 py-2 px-6 rounded-lg mt-4" >Elegir Plan Anual</button>
+                </div>
+        
+                <!-- Plan Premium -->
+                <div class="bg-white border rounded-lg shadow-md p-8">
+                <h2 class="text-blue-800 text-xl font-bold mb-4">Premium</h2>
+                <p class="text-3xl font-bold text-gray-800 mb-4">$12</p>
+                <p class="text-sm text-gray-500 mb-4">Usuario/Mes</p>
+                <ul class="text-left mb-6 space-y-2">
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Toma de órdenes en tiempo real</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de mesas</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Reportes de ventas básicos</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Historial de comandas</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Promociones y descuentos</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de personal</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Integración con pasarelas de pago</li>
+                    <li class="text-gray-700 flex items-center"><span class="text-green-500 mr-2">✔</span>Gestión de inventarios</li>
+                </ul>
+                <button  (click)="pagar(productos[4])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Mensual</button>
+                <button  (click)="pagar(productos[5])" class="bg-blue-100 text-blue-800 py-2 px-6 rounded-lg mt-4">Elegir Plan Anual</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+
+    <!-- Cargando...... -->
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>
+

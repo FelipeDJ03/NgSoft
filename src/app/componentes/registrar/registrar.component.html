@@ -1,0 +1,204 @@
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="bg-gray-50 bg-gradient-to-r from-white-500 to-yellow-500">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white">
+            <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
+            Boletos    
+        </a>
+        <div class="w-full bg-white rounded-lg shadow-lg border-2 border-white dark:border-gray-700 md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    REGISTRAR RESTAURANTE
+                </h1>
+                <form class="space-y-4 md:space-y-6" #info_resfrom="ngForm" (ngSubmit)="info_res(info_resfrom)" action="#">
+                    <h1 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Informacion del restaurante</h1>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre Restaurant</label>
+                        <input type="text" name="nombre_res" [(ngModel)]="restaurant.nombre_res" id="nombre_res" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion</label>
+                        <input type="text" name="direccion" [(ngModel)]="restaurant.direccion" id="direccion" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciudad</label>
+                        <input type="text" name="ciudad" [(ngModel)]="restaurant.ciudad" id="ciudad" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Codigo Postal</label>
+                        <input type="text" name="cp" [(ngModel)]="restaurant.cp" id="cp" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pais</label>
+                        <input type="text" name="pais" [(ngModel)]="restaurant.pais" id="pais" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono del Restaurante</label>
+                        <input type="text" name="telefono" [(ngModel)]="restaurant.telefono" id="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Cocina</label>
+                        <select class="form-control" name="categoria" [(ngModel)]="restaurant.categoria">
+                            <option  value="" selected disabled>Seleccionar</option>
+                            <option value="Bar">Bar</option>
+                            <option value="Antojitos Mexicanos">Antojitos Mexicanos</option>
+                            <option value="Pizzeria">Pizzeria</option>
+            
+                          </select>
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripcion del Restaurante</label>
+                        <input type="text" name="descripcion" [(ngModel)]="restaurant.descripcion" id="descripcion" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div>
+                        <label for="hora_apertura" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Apertura</label>
+                        <input type="time" name="hora_apertura" [(ngModel)]="restaurant.hora_apertura" id="hora_apertura" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" required>
+                    </div>
+                    <div>
+                        <label for="hora_cierre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Cierre</label>
+                        <input type="time" name="hora_cierre" [(ngModel)]="restaurant.hora_cierre" id="hora_cierre" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" required>
+                    </div>
+                    <div >
+
+                    </div>
+                    <div>
+                        <label for="d_operacion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Días de Operación</label>
+                        <div>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.lunes" name="d_operacion" value="Lunes"> Lunes</label>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.martes" name="d_operacion" value="Martes"> Martes</label>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.miercoles" name="d_operacion" value="Miércoles"> Miércoles</label>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.jueves" name="d_operacion" value="Juevez"> Juevez</label>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.viernes" name="d_operacion" value="Viernes"> Miércoles</label>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.sabado" name="d_operacion" value="Sabado"> Sabado</label>
+                            <label><input type="checkbox" [(ngModel)]="restaurant.d_operacion.domingo" name="d_operacion" value="Domingo"> Domingo</label>
+                            <!-- Añadir más días -->
+                        </div>
+                    </div>
+                    <div>
+                        <label for="z_cobertura" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zona de Cobertura (km)</label>
+                        <input type="number" name="z_cobertura" [(ngModel)]="restaurant.z_cobertura" id="z_cobertura" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="Ingrese km de cobertura" required>
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Logo</label>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="perfil-input" (change)="eventoCambioDeImagen($event, 'perfil')">
+                          </div>
+                          <!--<div class="custom-file">
+                              <input class="custom-file-input" type="file" id="perfil-input" (change)="eventoCambioDeImagen($event, 'perfil')">
+                              <label class="custom-file-label" for="perfil-input" style="white-space:nowrap; overflow: hidden;">Seleccionar imagen de perfil</label>
+                          </div>-->
+                          <img [src]="imgSeleccionadaPerfil" class="img-thumbnail rounded-circle" alt="..." style="width: 250px; height: 250px; object-fit: cover;">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MEtodos de pago</label>
+                        <input type="number" name="m_d_pago" [(ngModel)]="restaurant.m_d_pago" id="m_d_pago" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <button *ngIf="!cargando" type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                        Siguiente
+                    </button>
+                    <button *ngIf="cargando" class="w-full text-black bg-white-600 hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800">
+                        Cargando.....
+                    </button>
+                </form>
+                <form class="space-y-4 md:space-y-6" #info_propform="ngForm" (ngSubmit)="info_prop(info_propform)" action="#">
+                    <h1 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Informacion de la cuenta del propietario</h1>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre propietario o Administrador</label>
+                        <input type="text" name="nombre_propietario" [(ngModel)]="restaurant.nombre_propietario" id="nombre_propietario" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellidos del propietario o Administrador</label>
+                        <input type="text" name="apellido" [(ngModel)]="restaurant.apellido" id="apellido" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion del  propietario o Administrador</label>
+                        <input type="text" name="direccion_p" [(ngModel)]="restaurant.direccion_p" id="direccion_p" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div >
+                        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo Electronico de contacto</label>
+                        <input type="text" name="email" [(ngModel)]="restaurant.email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="413123123" required="">
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-white-900 dark:text-white">Tu contraseña</label>
+                        <input type="password" name="password" [(ngModel)]="restaurant.password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" required="">
+                    </div>
+
+                    <button *ngIf="!cargando" type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                        Siguiente
+                    </button>
+                    <button *ngIf="cargando" class="w-full text-black bg-white-600 hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800">
+                        Cargando.....
+                    </button>
+                </form>
+
+
+                <form class="space-y-4 md:space-y-6" #docform="ngForm" (ngSubmit)="doc(docform)" action="#">
+                    <h1 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentación</h1>
+                    
+                    <div>
+                        <label for="documento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Licencia de Funcionamiento, Certificado de Higiene (PDF)</label>
+                        <input type="file" name="documento" id="documento" accept=".pdf" (change)="eventoCambioDeDocumento($event)" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" required>
+                    </div>
+                
+                    <button *ngIf="!cargando" type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                        Siguiente
+                    </button>
+                    <button *ngIf="cargando" class="w-full text-black bg-white-600 hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800">
+                        Cargando.....
+                    </button>
+                </form>
+                <form class="space-y-4 md:space-y-6" #info_bancoform="ngForm" (ngSubmit)="info_banco(info_bancoform)" action="#">
+
+                    <h1 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Información Bancaria (pagos comisiones)</h1>
+                  
+                    <!-- Nombre del banco -->
+                    <div>
+                      <label for="nombre_banco" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del banco</label>
+                      <input type="text" name="nombre_banco" [(ngModel)]="restaurant.nombre_banco" id="nombre_banco" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="Ingrese el nombre del banco" required>
+                    </div>
+                  
+                    <!-- Número de cuenta -->
+                    <div>
+                      <label for="numero_cuenta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de cuenta</label>
+                      <input type="number" name="numero_cuenta" [(ngModel)]="restaurant.numero_cuenta" id="numero_cuenta" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="Número de cuenta" required>
+                    </div>
+                  
+                    <!-- Clave Interbancaria -->
+                    <div>
+                      <label for="clave_interbancaria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Clave Interbancaria</label>
+                      <input type="number" name="clave_interbancaria" [(ngModel)]="restaurant.clave_interbancaria" id="clave_interbancaria" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="Clave Interbancaria" required>
+                    </div>
+                  
+                    <!-- RFC -->
+                    <div>
+                      <label for="rfc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RFC</label>
+                      <input type="text" name="rfc" [(ngModel)]="restaurant.rfc" id="rfc" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-600 dark:focus:border-orange-600" placeholder="RFC" required>
+                    </div>
+                  
+                    <!-- Botón de registro -->
+                    <button *ngIf="!cargando" type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                      Registrar
+                    </button>
+                    
+                    <button *ngIf="cargando" class="w-full text-black bg-white-600 hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800">
+                      Cargando...
+                    </button>
+                  
+                  </form>
+              
+               
+            </div>
+        </div>
+    </div>
+</div>

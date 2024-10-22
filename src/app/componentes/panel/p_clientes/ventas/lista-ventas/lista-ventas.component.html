@@ -1,0 +1,224 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+</style>
+
+<div class="flex h-screen">
+    <app-menu class="w-1/8"></app-menu>
+    <div class="flex-1 p-8 bg-gray-100">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-gray-800" style="font-family: 'Mulish', sans-serif;">Historial de Ventas</h1>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 ...">
+                <div class="max-w-xs">
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Fecha</label>
+                    <div class="relative rounded-md shadow-sm flex max-w-md">                     
+                      <input type="date" [value]="getDefaultDate()" [(ngModel)]="fechaSeleccionada" id="fechaInicio" name="fechaInicio" class="block w-full rounded-md border-0 py-1.5 pl-3 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mulish-a" placeholder="">                    
+                      <button type="button" class="bg-blue-700 mulish-a text-white rounded-md px-4 py-1.5 mx-2 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" (click)="buscarVentas()">Buscar</button>
+                    </div>
+                </div>
+            <div>
+                <div class="flex justify-end">
+                    <div class="relative mt-8 rounded-md shadow-sm flex max-w-md">
+                      <input  [(ngModel)]="filtro_ventas" type="text" name="price" id="price" class="block w-full rounded-l-md border-0 py-1.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 mulish-a" placeholder="Buscar venta por folio...">
+                      <button type="button" class="bg-blue-700 mulish-a text-white rounded-r-md px-4 py-1.5 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" (click)="filtro()">Buscar</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="grid grid-flow-col justify-stretch ... espacio" *ngIf="load_data === false" >
+            <div>
+                <div class="grid grid-flow-col justify-stretch ...">
+                    <div>
+                        <p class="titulo2">Ventas Totales</p>
+                    </div>
+                    <div>
+                        <p class="titulo1">{{ totalVentas }}</p>
+                    </div>
+                  </div>
+            </div>
+            <div>
+                <div class="grid grid-flow-col justify-stretch ...">
+                    <div>
+                        <p class="titulo2">Total Vendido</p>
+                    </div>
+                    <div><p class="titulo1">$ {{ totalVendido }} MXN</p></div>
+                  </div>
+            </div>
+          </div>
+<br><hr>
+
+
+
+        <!-- Tabla -->
+        <div *ngIf="load_data === false" class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white w-3/4 mx-auto mt-10">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Fecha de Venta</th>
+                        <th scope="col" class="px-6 py-3">Folio</th>
+                        <th scope="col" class="px-6 py-3">Metodo de PAgo</th>
+                        <th scope="col" class="px-6 py-3">Importe</th>
+                        <th scope="col" class="px-6 py-3">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let venta of ventas ; let i = index">
+                    <!-- filas -->
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <!-- Columna de Fecha de Venta -->
+                        <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                            {{venta.fecha | date: 'longDate' }}
+                        </td>
+
+                        <!-- Columna de Tipo de Suscripción -->
+                        <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                            {{venta.folio}}
+                        </td>
+
+                        <!-- Columna de Cantidad Vendida -->
+                        <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                            {{venta.metodoPago}}
+                        </td>
+
+                        <!-- Columna de Producto -->
+                        <td class="py-4 px-6 text-sm font-medium">
+                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-500 rounded-full">
+                               {{venta.total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}}
+                            </span>
+                        </td>
+
+
+
+                        <td class="py-4 px-6 text-right">                       
+                            <div class="relative inline-block text-left">
+                                <div>
+                                    <button class="ml-4 text-gray-500 hover:text-gray-700" 
+                                            type="button" 
+                                            (click)="toggleMenu(i)" 
+                                            [attr.aria-expanded]="menuAbierto === i ? 'true' : 'false'" 
+                                            aria-haspopup="true">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                </div>
+                                
+                                <div *ngIf="menuAbierto === i" id="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                    <div class="py-1" role="none">
+                                        <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0" (click)="generatePDF(i)">Imprimir ticket</button>
+                                        <!--PDF-->
+                                        <div id="ListaVentas_PDF_{{i}}" style="display: none;">
+                                            <div class="ticket">
+                                                <p class="t-titulo1"><b>Venta</b></p>
+                                                <p class="t-titulo" style="font-style: oblique;">Ticket de compra</p>
+                                                <p class="t-subtitulo">{{datos_restaurante.categoria}}</p>
+                                                <p class="t-subtitulo">{{datos_restaurante.direccion}}</p>
+                                                <br>
+                                                <hr class="dotted-line"> 
+                                                <p class="t-text1" style="margin-top: 1%;">FOLIO: {{ venta.folio }}</p>                                   
+                                                <p class="t-text1">FECHA:{{venta.fecha | date: 'longDate' }} </p>
+                                                <div class="productos">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>PRODUCTO</th>
+                                                                <th>CANT</th>
+                                                                <th>SUBT</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let producto of venta.productos">
+                                                                <td>{{ producto.nombre }}</td>
+                                                                <td>{{ producto.cantidad }}</td>
+                                                                <td>{{ producto.precio?.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <hr class="dotted-line"> 
+                                                <p class="t-text2">MÉTODO DE PAGO</p>
+                                                <p class="t-text2">{{venta.metodoPago}}</p>
+                                                <p class="t-text2">IMPORTE: {{ venta.total?.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }} MXN</p>
+                                                <p class="t-titulo">Gracias por su compra</p>
+                                            </div>
+                                        </div> 
+                                        <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0" (click)="generatePDF2(i, venta)">Reporte de Venta</button>
+                                        <!-- Contenido para PDF -->
+                                        <div id="DetalleVenta_PDF_{{i}}" style="display: none; font-family: Arial, sans-serif; color: #000;">
+
+                                        <h2 style="font-size: 28px; font-weight: bold; margin: 0; padding: 10px 0; text-align: left;">Ventas</h2>
+                                            
+
+                                            <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                                                <div style="border-radius: 8px; padding: 20px; background-color: #F5F5F5; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); width: 40%;">
+                                                    <p style="font-size: 20px; font-weight: bold; margin: 0;">Nota de Venta</p>
+                                                    <p style="font-size: 16px; margin: 5px 0;">{{ datos_restaurante.nombre_res}}</p>
+                                                    <p style="font-size: 16px; margin: 5px 0;">Folio:{{ venta.folio}}</p>
+                                                    <p style="font-size: 16px; margin: 5px 0;">Fecha:{{venta.fecha | date: 'longDate' }}     </p>
+                                                </div>
+                                            </div>
+
+                                            <div style="border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 50px;">
+                                                <table style="width: 100%; border-collapse: collapse;">
+                                                    <thead>
+                                                        <tr style="background-color: #F5F5F5; color: #000;">
+                                                            <th style="padding: 12px; text-align: left;">Producto</th>
+                                                            <th style="padding: 12px; text-align: center;">Cantidad</th>
+                                                            <th style="padding: 12px; text-align: center;">Precio Unitario</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let producto of venta.productos">
+                                                            <td  style="padding: 12px; text-align: left;">{{ producto.nombre }}</td>
+                                                            <td  style="padding: 12px; text-align: center;">{{ producto.cantidad }} unidad</td>
+                                                            <td  style="padding: 12px; text-align: center;">{{ producto.precio?.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                                                <div style="background-color: #F5F5F5; border-radius: 8px; padding: 15px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); width: 40%;">
+                                                    <div style="margin-bottom: 10px;">
+                                                        <p style="margin: 0;">Subtotal</p>
+                                                        <p style="margin: 0;">{{ venta.subtotal?.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</p>
+                                                    </div>
+                                                    <div style="margin-bottom: 10px;">
+                                                        <p style="margin: 0;"><b>Total</b></p>
+                                                        <p style="margin: 0; font-weight: bold;">{{ venta.total?.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</p>
+                                                    </div>
+                                                    <hr style="border: 1px solid #666;">
+                                                    <div style="margin-top: 10px;">
+                                                        <p style="margin: 0;"><b>Pago</b></p>
+                                                        <div  style="display: flex; justify-content: space-between;">
+                                                            <p style="margin: 0;">{{ venta.metodoPago }}</p>
+                                                           
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                                                            <p style="margin: 0;">Cambio</p>
+                                                            <p style="margin: 0;">{{ venta.cambio?.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Contenido para PDF -->
+
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+    </div>
+</div>
+<!-- Cargando...... -->
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>

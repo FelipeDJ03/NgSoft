@@ -1,0 +1,51 @@
+<div class="flex h-screen">
+    <app-menu class="w-1/8"></app-menu>
+    <div class="flex-1 p-8 bg-gray-100 flex justify-center items-center">
+        <div class="w-full max-w-lg p-6 space-y-4 bg-white rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-center text-black">
+                <span class="text-blue-700 text-3xl font-semibold" style="letter-spacing: -0.14em;">&lt;/&gt;</span>
+                NG Soft
+            </h1>
+            <p class="text-center font-bold text-gray-950">Registrar Administrador</p>
+            <p class="text-center text-gray-500 pb-4">Completa la información a continuación</p>
+
+            <form class="space-y-4" #registrarForm="ngForm" (ngSubmit)="registrar_auth(registrarForm)" action="#">
+                <div class="grid grid-cols-2 gap-4">
+            
+                    <div>
+                        <label for="email" class="block text-sm text-gray-600">USUARIO</label>
+                        <input type="text" name="email" [(ngModel)]="usuario.email" id="email" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu usuario" required>
+                    </div>
+                    <div>
+                        <label for="nombre" class="block text-sm text-gray-600">NOMBRE</label>
+                        <input type="text" name="nombre" [(ngModel)]="usuario.nombre" id="nombre" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu nombre" required>
+                    </div>
+
+                   
+                    <div>
+                        <label for="apellido" class="block text-sm text-gray-600">APELLIDO</label>
+                        <input type="text" name="apellido" [(ngModel)]="usuario.apellido" id="apellido" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu apellido" required>
+                    </div>
+                    <div>
+                        <label for="direccion" class="block text-sm text-gray-600">DIRECCIÓN</label>
+                        <input type="text" name="direccion" [(ngModel)]="usuario.direccion" id="direccion" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu dirección" required>
+                    </div>
+
+                 
+                    <div>
+                        <label for="telefono" class="block text-sm text-gray-600">TELÉFONO</label>
+                        <input type="number" name="telefono" [(ngModel)]="usuario.telefono" id="telefono" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu teléfono" required>
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm text-gray-600">CONTRASEÑA</label>
+                        <input type="password" name="password" [(ngModel)]="usuario.password" id="password" class="w-full p-2.5 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+         
+                <button *ngIf="!cargando" type="submit" class="w-full py-2.5 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Registrar</button>
+                <button *ngIf="cargando" class="w-full text-black bg-gray-200 rounded-lg">Cargando...</button>
+            </form>
+        </div>
+    </div>
+</div>

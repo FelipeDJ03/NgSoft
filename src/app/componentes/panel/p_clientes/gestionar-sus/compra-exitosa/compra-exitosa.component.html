@@ -1,0 +1,79 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+</style>
+<div class="flex h-screen">
+    <!--menú-->
+<div class="flex-1 p-8 bg-gray-100">
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl mulish-a text-gray-800">Gestionar Suscripción</h1>
+        <div class="flex justify-end items-center space-x-6">
+            <!-- Icono de Búsqueda -->
+            <div class="relative text-gray-500">
+                <i class="bi bi-search absolute top-1/2 transform -translate-y-1/2 left-3"></i>
+                <input
+                  type="text"
+                  placeholder="Buscar..."
+                  class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                />
+            </div>
+
+            <!-- Icono de Notificaciones -->
+            <button class="relative text-gray-500 hover:text-gray-700">
+                <i class="bi bi-bell"></i>
+                <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-blue-500"></span>
+            </button>
+
+            <!-- Perfil de Usuario -->
+            <div class="flex items-center space-x-2">
+                <span class="text-sm font-medium text-gray-700">Usuario</span>
+                <img
+                  class="w-10 h-10 rounded-full"
+                  src="https://via.placeholder.com/150"
+                  alt="Foto de perfil"
+                />
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+         Logo y Nombre 
+        <h1 class="text-3xl font-bold mb-4">
+            <span class="text-blue-600">&lt;/&gt;</span>NG Soft
+        </h1>
+         Mensaje de Procesamiento 
+        <p class="text-gray-600 mb-6">
+            Estamos procesando tu pago.<br />
+            Por favor, espera un momento mientras confirmamos los detalles.
+        </p>
+         Imagen de Reloj 
+        <div class="flex justify-center mb-4">
+            <img src="assets/time.svg" 
+                alt="Procesando Pago" class="w-48 h-48"/>
+        </div>
+        </div>
+    </div> -->
+
+    
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <!-- Logo y Nombre -->
+        <h1 class="text-3xl font-bold mb-4">
+            <span class="text-blue-600">&lt;/&gt;</span>NG Soft
+        </h1>
+        <!-- Mensaje de Procesamiento -->
+        <p class="text-gray-600 mb-6">
+            El pago de tu suscripción se ha realizado exitosamente.<br />
+            ¡Gracias por confiar en nuestra App!.
+        </p>
+        <!-- Imagen de Reloj -->
+        <div class="flex justify-center mb-4">
+            <img src="assets/pay.svg" 
+                alt="Pago" class="w-48 h-48"/>
+        </div>
+        <button  class="px-5 py-3 text-white bg-blue-700 hover:bg-blue-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-200" 
+        (click)="menu()">Volver al menu</button>
+        </div>
+       
+    </div>
+</div>

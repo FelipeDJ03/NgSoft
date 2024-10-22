@@ -1,0 +1,38 @@
+.open-sans-custom {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 650; /* Ajusta el peso a un valor entre 300 y 800 */
+    font-style: normal; /* Si quieres que sea en cursiva, usa font-style: italic */
+    font-variation-settings: "wdth" 100;
+  }
+  
+  // <uniquifier>: Use a unique and descriptive class name
+  // <weight>: Use a value from 100 to 900
+  
+  .raleway-fond {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+  .poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  .poppins-t {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  .poppins-e {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  /* Clip-path ajustado para mover la línea diagonal */
+  .clip-diagonal {
+  clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%);
+  }
+  

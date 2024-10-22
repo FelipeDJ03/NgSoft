@@ -1,0 +1,131 @@
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+  <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>
+
+<ng-container *ngIf="load_data === false">
+  <div class="flex h-screen">
+    <app-menu></app-menu>
+    <div class="flex-1 p-10 bg-gray-100">
+      <div class="flex justify-end items-center space-x-6 mb-4">
+        <!-- Icono de Búsqueda -->
+        <div class="relative text-gray-500">
+          <i class="bi bi-search absolute top-1/2 transform -translate-y-1/2 left-3"></i>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <!-- Icono de Notificaciones -->
+        <button class="relative text-gray-500 hover:text-gray-700">
+          <i class="bi bi-bell"></i>
+          <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-blue-500"></span>
+        </button>
+        <!-- Perfil de Usuario -->
+        <div class="flex items-center space-x-2">
+          <span class="text-sm font-medium text-gray-700">Usuario</span>
+          <img
+            class="w-10 h-10 rounded-full"
+            src="https://via.placeholder.com/150"
+            alt="Foto de perfil"
+          />
+        </div>
+      </div>
+      
+  
+  
+      <ng-container *ngIf="load_data === false">
+        <ng-container *ngIf="datos_usuario.rol === 'administrador'">
+          <h1 class="text-2xl font-bold text-gray-800">Hola, eres dueño del restaurante</h1>
+        </ng-container>
+  
+        <ng-container *ngIf="datos_usuario.rol === 'propietario'">
+          <div class="space-y-6">
+            <!-- Botones -->
+            <button 
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md mr-5" 
+              (click)="mostrar_usuarios()">
+              Lista Usuarios
+            </button>
+            <button 
+              class="bg-emerald-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-md" 
+              (click)="mostrar_restaurantes()">
+              Lista Restaurantes
+            </button>
+  
+            <!-- Tabla de Usuarios -->
+            <ng-container *ngIf="ventana === true">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-800">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">Nombre</th>
+                      <th scope="col" class="px-6 py-3">Apellido</th>
+                      <th scope="col" class="px-6 py-3">Correo</th>
+                      <th scope="col" class="px-6 py-3">Rol</th>
+                      <th scope="col" class="px-6 py-3">Dirección</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of usuarios" class="bg-white border-b hover:bg-gray-50">
+                      <td class="px-6 py-4 font-medium text-gray-900">{{ item.nombre }}</td>
+                      <td class="px-6 py-4">{{ item.apellido }}</td>
+                      <td class="px-6 py-4">{{ item.email }}</td>
+                      <td class="px-6 py-4">{{ item.rol }}</td>
+                      <td class="px-6 py-4">{{ item.direccion }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-container>
+  
+            <!-- Tabla de Restaurantes -->
+            <ng-container *ngIf="ventana === false">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-800">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">Nombre</th>
+                      <th scope="col" class="px-6 py-3">Contacto</th>
+                      <th scope="col" class="px-6 py-3">Teléfono</th>
+                      <th scope="col" class="px-6 py-3">Estado</th>
+                      <th scope="col" class="px-6 py-3">Tipo de plan</th>
+                      <th scope="col" class="px-6 py-3">Inicio Suscripción</th>
+                      <th scope="col" class="px-6 py-3">Fin Suscripción</th>
+                      <th scope="col" class="px-6 py-3">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of restaurantes" class="bg-white border-b hover:bg-gray-50">
+                      <td class="px-6 py-4 font-medium text-gray-900">{{ item.nombre_res }}</td>
+                      <td class="px-6 py-4">{{ item.nombre_propietario }}</td>
+                      <td class="px-6 py-4">{{ item.telefono }}</td>
+                      <td class="px-6 py-4">{{ item.estado }}</td>
+                      <td class="px-6 py-4">{{ item.plan }}</td>
+                      <td class="px-6 py-4">{{ item.sus_inicio | date: 'longDate' }}</td>
+                      <td class="px-6 py-4">{{ item.sus_final | date: 'longDate' }}</td>
+                      <td class="px-6 py-4">
+                        <div class="relative">
+                          <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-md dropdown-toggle">
+                            Opciones
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item">Detalles</a>
+                            <a *ngIf="item.estado === 'inactivo'" class="dropdown-item">Suscripción</a>
+                            <a class="dropdown-item">Historial suscripciones</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+

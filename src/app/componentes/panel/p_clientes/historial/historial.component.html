@@ -1,0 +1,62 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
+<div class="flex h-screen">
+    <app-menu class="w-1/8"></app-menu>
+<div class="flex-1 p-8 bg-gray-100">
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl mulish-a text-gray-800">Historial de Pagos</h1>
+       
+    </div>
+
+    <!-- Tabla -->
+    <div *ngIf="load_data === false" class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white w-3/4 mx-auto mt-20">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Fecha de pago</th>
+                    <th scope="col" class="px-6 py-3">Tipo de Suscripción</th>
+                    <th scope="col" class="px-6 py-3">Cantidad Pagada</th>
+                    <th scope="col" class="px-6 py-3">Producto</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of pagos">
+              <!-- filas -->
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <!-- Columna de Fecha de Pago -->
+                <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                  {{item.fecha | date: 'longDate' }}
+                </td>
+                
+                <!-- Columna de Tipo de Suscripción -->
+                <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                  {{item.periodo}}
+                </td>
+                
+                <!-- Columna de Método de Pago -->
+                <td class="py-4 px-6 text-sm font-medium text-gray-900">
+                  ${{item.cantidadPagada}}
+                </td>
+                
+                <!-- Columna de Estado -->
+                <td class="py-4 px-6 text-sm font-medium">
+                  <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-500 rounded-full">
+                    {{item.nombreProducto}}
+                  </span>
+                </td>
+                
+                <!-- Columna de Opciones -->
+                <td class="py-4 px-6 text-right">
+                    <button class="ml-4 text-gray-500 hover:text-gray-700">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- Cargando...... -->
+<div *ngIf="load_data === true" class="fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center bg-white bg-opacity-50">
+  <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+</div>
+</div>

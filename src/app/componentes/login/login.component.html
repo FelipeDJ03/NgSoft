@@ -1,0 +1,37 @@
+<div class="flex h-screen"> 
+    <!-- Columna izquierda: Formulario de inicio de sesión -->
+    <div class="w-1/2 flex items-center justify-center bg-gray-50">
+        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-center text-black">
+                <span class="text-blue-700 text-3xl font-semibold" style="letter-spacing: -0.14em;">&lt;/&gt;</span>
+                NG Soft</h1>
+            <p class="text-center font-bold text-gray-950">Iniciar Sesión</p>
+            <p class=".inter-a text-center text-gray-500 pb-7">Ingresa tu correo y contraseña a continuación</p>
+            <form class="space-y-4" #LoginForm="ngForm" (ngSubmit)="login(LoginForm)" action="#">
+                <div>
+                    <label class="block text-sm text-gray-600">CORREO ELECTRÓNICO</label>
+                    <input type="email" name="email" [(ngModel)]="usuario.email" id="email" class="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu Correo" required>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600">CONTRASEÑA</label>
+                    <input type="password" name="password" [(ngModel)]="usuario.password" id="password" class="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contraseña" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-sm text-blue-500 hover:underline">¿Olvidaste tu Contraseña?</a>
+                </div>
+                <button *ngIf="!cargando" type="submit" class="w-full py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Iniciar Sesión</button>
+                <button *ngIf="cargando" class="w-full text-black bg-gray-200 rounded-lg">Cargando...</button>
+            </form>
+            <p class="text-sm text-center text-gray-500">
+                ¿Aún no tienes una cuenta? <a routerLink="/registrar"  class="text-blue-500 hover:underline">Regístrate</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Columna derecha: Imagen y texto promocional -->
+    <div class="w-1/2 flex items-center justify-center">
+        <div class="flex justify-center items-center w-full h-full">
+            <img src="assets/login.jpg" alt="Image description" class="w-full h-full object-cover">
+        </div>
+    </div>
+</div>
