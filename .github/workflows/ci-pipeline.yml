@@ -1,24 +1,55 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
+  build-and-package:
     runs-on: ubuntu-latest
     steps:
+      # Checkout del código
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      # Instalación de dependencias
+      - name: Install dependencies
+        run: |
+          # Si usas Node.js
+          npm install
+
+      # Empaquetado (ejemplo: crear archivo ZIP)
+      - name: Package application
+        run: |
+          zip -r app.zip .
+
+      # Subir artefacto empaquetado
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          node-version: '16'
+          name: app-artifact
+          path: app.zip
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-package
+    steps:
+      # Descargar artefacto
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: app-artifact
+
+      # Desempaquetar artefacto
+      - name: Unpack artifact
+        run: |
+          unzip app.zip -d app
+
+      # Despliegue usando Docker Compose
+      - name: Deploy with Docker Compose
+        run: |
+          docker-compose -f app/docker-compose.yml up -d
 
       - name: Install dependencies
         run: npm install
